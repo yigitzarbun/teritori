@@ -6,12 +6,11 @@ import { getPosts } from "../redux-stuff/actions";
 function TimeLine() {
   const allPosts = useSelector((store) => store.allPosts);
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (!allPosts) {
       dispatch(getPosts());
     }
-  }, []);
+  }, [allPosts]);
 
   let resultJSX = "";
 
@@ -21,7 +20,7 @@ function TimeLine() {
     resultJSX = "No posts available";
   } else {
     resultJSX = allPosts.map((post) => (
-      <div id={post.id} className="p-6 border-t bg-white">
+      <div key={post.id} className="p-6 border-t bg-white">
         {post.body}
       </div>
     ));

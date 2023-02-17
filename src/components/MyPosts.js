@@ -19,7 +19,7 @@ function MyPosts() {
     resultJSX = "No posts available";
   } else {
     resultJSX = myPosts.map((post) => (
-      <div id={post.id} className="p-6 border-t bg-white">
+      <div key={post.id} className="p-6 border-t bg-white">
         {post.body}
       </div>
     ));
