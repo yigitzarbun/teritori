@@ -1,0 +1,77 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "body": "Non excepteur nulla adipisicing ad est esse proident culpa consequat minim laboris quis in eiusmod. Consequat ad et officia ipsum est aliquip ipsum tempor. Eu voluptate dolor esse commodo pariatur exercitation.",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "body": "Non excepteur nulla adipisicing ad est esse proident culpa consequat minim laboris quis in eiusmod. Consequat ad et officia ipsum est aliquip ipsum tempor. Eu voluptate dolor esse commodo pariatur exercitation.",
+      "userId": 1
+    },
+    {
+      "id": 13,
+      "body": "Non excepteur nulla adipisicing ad est esse proident culpa consequat minim laboris quis in eiusmod. Consequat ad et officia ipsum est aliquip ipsum tempor. Eu voluptate dolor esse commodo pariatur exercitation.",
+      "userId": 1
+    },
+    {
+      "body": "test",
+      "id": 14,
+      "userId": 1
+    },
+    {
+      "body": "a",
+      "id": 15,
+      "userId": 1
+    },
+    {
+      "body": "test2",
+      "id": 16,
+      "userId": 1
+    },
+    {
+      "body": "asd",
+      "id": 17,
+      "userId": 1
+    },
+    {
+      "body": "asd",
+      "id": 18,
+      "userId": 1
+    },
+    {
+      "body": "son test\n",
+      "id": 19,
+      "userId": 1
+    },
+    {
+      "body": "test son 2",
+      "id": 20
+    },
+    {
+      "body": "en son test",
+      "id": 21
+    },
+    {
+      "body": "ghf",
+      "id": 22
+    },
+    {
+      "id": 23
+    },
+    {
+      "body": "asdsadasdas",
+      "id": 24
+    }
+  ],
+  "users": [
+    {
+      "email": "yzarbun@gmail.com",
+      "password": "$2a$10$rX0II899vlYwkQv1YP5CG.zZE/MppRmGsaAaggGMV//fG1gSSQhOS",
+      "username": "1",
+      "avatarUrl": "1",
+      "id": 1
+    }
+  ]
+}
