@@ -14,6 +14,7 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const GET_POSTS = "GET_POSTS";
 export const GET_MY_POSTS = "GET_MY_POSTS";
+export const ADD_POST = "ADD_POST";
 
 export const loginWith = (formData, history) => (dispatch) => {
   axios
@@ -60,4 +61,16 @@ export const getMyPosts = (user) => (dispatch) => {
     .catch((error) => {
       console.log(error);
     });
+};
+
+export const addPost = (data) => (dispatch) => {
+  axios
+    .post("http://localhost:5000/posts", data)
+    .then((response) => {
+      if (response.status === 201) {
+        toast.success("Post successful!");
+        dispatch({ type: ADD_POST, payload: response.data });
+      }
+    })
+    .catch((error) => console.log(error));
 };

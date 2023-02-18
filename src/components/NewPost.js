@@ -1,8 +1,11 @@
 import React from "react";
-import axios from "axios";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import { addPost } from "../redux-stuff/actions";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 function NewPost() {
+  const user = useSelector((store) => store.user);
+  const userId = user.user.id;
   const {
     register,
     handleSubmit,
@@ -10,23 +13,20 @@ function NewPost() {
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
-  function addPost(data) {
-    axios
-      .post("http://localhost:5000/posts", data)
-      .then((response) => {
-        if (response.status === 201) {
-          toast.success("Post successful!");
-          reset();
-        }
-      })
-
-      .catch((error) => console.log(error));
+  const dispatch = useDispatch();
+  function handleAddPost(data) {
+    const dataWide = {
+      ...data,
+      userId: userId,
+    };
+    dispatch(addPost(dataWide));
+    reset();
   }
 
   return (
     <form
       className="newPostForm max-w-md mx-auto bg-white shadow p-8"
-      onSubmit={handleSubmit(addPost)}
+      onSubmit={handleSubmit(handleAddPost)}
     >
       <h1 className="text-2xl text-center mb-4">New Post</h1>
       <div>

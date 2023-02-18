@@ -19,12 +19,12 @@ function App() {
   return (
     <div className="allContent max-w-3xl mx-auto ">
       <header className="flex items-center justify-between mb-4 py-4">
-        <h1 className="font-bold text-lg">
+        <h1 className="font-bold text-3xl">
           <Link className="p-2 pl-0 block" to="/">
-            Teritori
+            teritori
           </Link>
         </h1>
-        <nav>
+        <nav className="flex justify-between w-1/2">
           <Link className="p-2" to="/son-postlar">
             Discover
           </Link>

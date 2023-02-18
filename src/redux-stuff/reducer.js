@@ -4,6 +4,7 @@ import {
   LOGOUT,
   GET_POSTS,
   GET_MY_POSTS,
+  ADD_POST,
 } from "./actions";
 
 const initialState = {
@@ -35,6 +36,12 @@ export function myReducer(state = initialState, action) {
       return {
         ...state,
         myPosts: action.payload,
+      };
+    case ADD_POST:
+      return {
+        ...state,
+        myPosts: [action.payload, ...(state.myPosts || [])],
+        allPosts: [action.payload, ...(state.allPosts || [])],
       };
     default:
       return state;

@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useHistory } from "react-router-dom";
 
 function SignupForm() {
   const {
@@ -11,6 +12,8 @@ function SignupForm() {
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
 
+  const history = useHistory();
+
   function handleSignupForm(data) {
     const gonderilecekVeri = { ...data };
     delete gonderilecekVeri.password2;
@@ -19,6 +22,8 @@ function SignupForm() {
       .then((response) => {
         if (response.status === 201) {
           console.log(response.data.accessToken, response.data.user);
+          toast.success("Register successful!");
+          history.push("/giris");
         }
       })
       .catch((error) => {
