@@ -1,83 +1,30 @@
 {
   "posts": [
     {
-      "body": "Hello world",
+      "title": "Welcome to teritori!",
+      "body": "Hello world, this is the first post on teritori.",
+      "district": "Maltepe",
       "userId": 1,
+      "date": "25/02/2023",
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
       "id": 1
-    },
-    {
-      "body": "test1",
-      "userId": 1,
-      "id": 2
-    },
-    {
-      "body": "test2",
-      "userId": 1,
-      "id": 3
-    },
-    {
-      "body": "test3",
-      "userId": 2,
-      "id": 4
-    },
-    {
-      "body": "al benden de bir post",
-      "userId": 4,
-      "id": 5
-    },
-    {
-      "body": "asd",
-      "userId": 1,
-      "id": 6
-    },
-    {
-      "body": "ş",
-      "userId": 5,
-      "id": 7
     }
   ],
   "users": [
     {
       "email": "yzarbun@gmail.com",
-      "password": "$2a$10$nMlbVZUg3v0PNVhBZaoGouK8gELVNBB4McM.qQo8OZqmlc3wLv7Lm",
-      "username": "TestUser1",
-      "avatarUrl": "",
+      "password": "$2a$10$kdA9LyAazRYC8dYAveQJEe5nzN272Ie16IwA02A7DEVZdtMLdZqOy",
+      "username": "yigitz",
+      "avatarUrl": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
       "id": 1
     },
     {
-      "email": "yigit.zarbun@yollando.com",
-      "password": "$2a$10$vIkaEM.fGHfECtvChtjyCOik.W0/zUEwmo3KN0iKVbzv3RZRIzBvK",
-      "username": "TestUser2",
+      "email": "adsas@gmail.com",
+      "password": "$2a$10$BzrWx0Zf.ibE644WqBsbqe/CK4jHFv86RdyIDB4jrYR4yByiyx.0.",
+      "username": "yzarbun@gmail.com",
       "avatarUrl": "",
       "id": 2
-    },
-    {
-      "email": "adsas@gmail.com",
-      "password": "$2a$10$KKGLiwoGOr6e5hZsH6G.A.iokMQQIjC/OYNMKvKy0kGf.ZkX3eu4G",
-      "username": "workintech",
-      "avatarUrl": "",
-      "id": 3
-    },
-    {
-      "email": "asdasdasd@asdaasd.c",
-      "password": "$2a$10$CVeR/jXiukIo1LWluo0HVe5.XMZyCpP7Qk8YvquAhjgLCLb4S930C",
-      "username": "q",
-      "avatarUrl": "",
-      "id": 4
-    },
-    {
-      "email": "gulencaliskan@gmail.com",
-      "password": "$2a$10$QxuplOQzJVexmaZwYcqC4OCWwA3wuYoKvyfMpLWppclrlij7BvzPC",
-      "username": "gülen",
-      "avatarUrl": "",
-      "id": 5
-    },
-    {
-      "email": "a@gulen.c",
-      "password": "$2a$10$sivAdM57t5qAu1e89skSVe9ItcpOendaMB2LtuFy9eLK1SjvgeNOm",
-      "username": "testgulen",
-      "avatarUrl": "",
-      "id": 6
     }
   ]
 }

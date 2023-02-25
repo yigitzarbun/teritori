@@ -22,7 +22,7 @@ function LoginForm() {
   return (
     <form
       onSubmit={handleSubmit(handleLogin)}
-      className="signupForm max-w-sm mx-auto bg-white shadow p-8"
+      className="signupForm max-w-sm mx-auto bg-white shadow p-8 rounded-xl"
     >
       <h1 className="text-2xl text-center mb-4">Log in</h1>
       <div>
@@ -35,13 +35,13 @@ function LoginForm() {
         <input
           {...register("email", { required: "Email girmelisin" })}
           id="email"
-          placeholder="örneğin johndoe@somewhere.com"
+          placeholder="e.g. johndoe@somewhere.com"
         />
       </div>
 
       <div>
         <label>
-          Şifre
+          Password
           {errors.password && (
             <span className="fieldError">{errors.password.message}</span>
           )}
@@ -58,7 +58,7 @@ function LoginForm() {
       </div>
 
       <button type="submit" disabled={!isValid}>
-        Sign in
+        Log in
       </button>
     </form>
   );

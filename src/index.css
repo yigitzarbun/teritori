@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(226, 235, 240);
+  background-color: rgb(214, 228, 235);
 }
 
 code {
@@ -28,7 +28,9 @@ code {
 }
 
 .signupForm input,
-.newPostForm textarea {
+.newPostForm textarea,
+.newPostForm input,
+select {
   @apply p-2 border w-full text-sm;
 }
 
@@ -39,7 +41,7 @@ code {
 
 .signupForm button,
 .newPostForm button {
-  @apply bg-amber-600 text-white block p-3 w-full disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply bg-black text-white block p-3 w-full disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl;
 }
 .fieldError {
   @apply text-red-700 text-xs;

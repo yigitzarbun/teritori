@@ -63,13 +63,16 @@ export const getMyPosts = (user) => (dispatch) => {
     });
 };
 
-export const addPost = (data) => (dispatch) => {
+export const addPost = (data, history) => (dispatch) => {
   axios
     .post("http://localhost:5000/posts", data)
     .then((response) => {
       if (response.status === 201) {
         toast.success("Post successful!");
         dispatch({ type: ADD_POST, payload: response.data });
+        setTimeout(() => {
+          history.push("/son-postlar");
+        }, 2000);
       }
     })
     .catch((error) => console.log(error));
