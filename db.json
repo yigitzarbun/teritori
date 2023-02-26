@@ -9,6 +9,16 @@
       "username": "yigitz",
       "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
       "id": 1
+    },
+    {
+      "title": "gülen burada",
+      "body": "selam test selam",
+      "district": "Maltepe",
+      "userId": 1,
+      "date": "25/02/2023",
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 2
     }
   ],
   "users": [
