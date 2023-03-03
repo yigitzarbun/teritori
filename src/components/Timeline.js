@@ -5,15 +5,14 @@ import Teri from "./Teri";
 
 function TimeLine() {
   const allPosts = useSelector((store) => store.allPosts);
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (!allPosts) {
       dispatch(getPosts());
     }
   }, [allPosts]);
-
   let resultJSX = "";
-
   if (allPosts === null) {
     resultJSX = "Loading posts";
   } else if (allPosts.length === 0) {

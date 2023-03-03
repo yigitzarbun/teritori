@@ -15,7 +15,8 @@ export const LOGOUT = "LOGOUT";
 export const GET_POSTS = "GET_POSTS";
 export const GET_MY_POSTS = "GET_MY_POSTS";
 export const ADD_POST = "ADD_POST";
-
+export const ADD_COMMENT = "ADD_COMMENT";
+export const GET_COMMENTS = "GET_COMMENTS";
 export const loginWith = (formData, history) => (dispatch) => {
   axios
     .post("  http://localhost:5000/login", formData)
@@ -44,7 +45,11 @@ export const getPosts = () => (dispatch) => {
       console.log(error);
     });
 };
-
+export const getComments = () => (dispatch) => {
+  axios.get("http://localhost:5000/comments").then((response) => {
+    dispatch({ type: GET_COMMENTS, payload: response.data });
+  });
+};
 export const getMyPosts = (user) => (dispatch) => {
   axios
     .get("http://localhost:5000/640/posts", {
@@ -76,4 +81,13 @@ export const addPost = (data, history) => (dispatch) => {
       }
     })
     .catch((error) => console.log(error));
+};
+
+export const addComment = (data) => (dispatch) => {
+  axios.post("http://localhost:5000/comments", data).then((response) => {
+    if (response.status == 201) {
+      toast.success("Comment successful!");
+      dispatch({ type: ADD_COMMENT, payload: response.data });
+    }
+  });
 };

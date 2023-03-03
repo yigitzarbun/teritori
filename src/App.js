@@ -7,6 +7,7 @@ import NewPost from "./components/NewPost";
 import LoginForm from "./components/LoginForm";
 import PrivateRoute from "./components/PrivateRoute";
 import MyPosts from "./components/MyPosts";
+import DetailedTeri from "./components/DetailedTeri";
 import { toast } from "react-toastify";
 
 function App() {
@@ -108,6 +109,10 @@ function App() {
           <PrivateRoute path="/kullanici/:id">
             <MyPosts />
           </PrivateRoute>
+          <PrivateRoute path="/post-detay/:id">
+            <DetailedTeri />
+          </PrivateRoute>
+
           <Route path="/giris">
             {" "}
             <LoginForm />

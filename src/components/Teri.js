@@ -1,13 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Teri(props) {
-  const { body, date, username, userPic, title, district } = props.post;
+  const { body, date, username, userPic, title, district, id } = props.post;
   return (
     <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
       <div className="flex">
         <div className="flex flex-col w-5/6">
           <p className="text-xs text-blue-600 mr-auto italic">{district}</p>
-          <p className="font-bold text-xl mb-4 mr-4">{title}</p>
+          <Link to={`/post-detay/${id}`}>
+            {" "}
+            <p className="font-bold text-xl mb-4 mr-4">{title}</p>
+          </Link>
 
           <p className="box-border break-words w-full mb-8">{body}</p>
         </div>

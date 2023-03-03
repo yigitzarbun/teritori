@@ -5,12 +5,15 @@ import {
   GET_POSTS,
   GET_MY_POSTS,
   ADD_POST,
+  ADD_COMMENT,
+  GET_COMMENTS,
 } from "./actions";
 
 const initialState = {
   user: getUserFromLs(),
   allPosts: null,
   myPosts: null,
+  comments: null,
 };
 
 export function myReducer(state = initialState, action) {
@@ -32,6 +35,11 @@ export function myReducer(state = initialState, action) {
         ...state,
         allPosts: action.payload,
       };
+    case GET_COMMENTS:
+      return {
+        ...state,
+        comments: action.payload,
+      };
     case GET_MY_POSTS:
       return {
         ...state,
@@ -42,6 +50,11 @@ export function myReducer(state = initialState, action) {
         ...state,
         myPosts: [action.payload, ...(state.myPosts || [])],
         allPosts: [action.payload, ...(state.allPosts || [])],
+      };
+    case ADD_COMMENT:
+      return {
+        ...state,
+        comments: [action.payload, ...(state.comments || [])],
       };
     default:
       return state;

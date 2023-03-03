@@ -8,7 +8,8 @@
       "date": "25/02/2023",
       "username": "yigitz",
       "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
-      "id": 1
+      "id": 1,
+      "comments": []
     },
     {
       "title": "gülen burada",
@@ -18,7 +19,104 @@
       "date": "25/02/2023",
       "username": "yigitz",
       "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 2,
+      "comments": []
+    },
+    {
+      "title": "Test uzun post",
+      "body": "akdsaşsjdşaksdşlaskşdkasdklşaskdşlaskldşalkdaksşdkaşsdşakdşakşsdkaşskdşaşsdkşakdşaksşdkasşdkşakdşaşldkaşsldkşalskdşaksşdasşdkaşskdşlaksdşkaşsdkaşdkşal",
+      "district": "Maltepe",
+      "userId": 1,
+      "date": "03/03/2023",
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 3,
+      "comments": []
+    },
+    {
+      "body": "asdasd",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 4
+    },
+    {
+      "body": "asd",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 5
+    },
+    {
+      "body": "sdfs",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 6
+    },
+    {
+      "body": "asd",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 7
+    },
+    {
+      "body": "asd",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 8
+    }
+  ],
+  "comments": [
+    {
+      "body": "asdas",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "id": 1
+    },
+    {
+      "body": "asdas",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
       "id": 2
+    },
+    {
+      "body": "test",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "id": 3
+    },
+    {
+      "body": "1",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "id": 4
+    },
+    {
+      "body": "asdasd",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "id": 5
+    },
+    {
+      "body": "çok uuznmuş",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "id": 6
     }
   ],
   "users": [
