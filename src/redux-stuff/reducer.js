@@ -7,6 +7,8 @@ import {
   ADD_POST,
   ADD_COMMENT,
   GET_COMMENTS,
+  ADD_VOTE,
+  GET_VOTES,
 } from "./actions";
 
 const initialState = {
@@ -14,6 +16,7 @@ const initialState = {
   allPosts: null,
   myPosts: null,
   comments: null,
+  votes: null,
 };
 
 export function myReducer(state = initialState, action) {
@@ -40,6 +43,11 @@ export function myReducer(state = initialState, action) {
         ...state,
         comments: action.payload,
       };
+    case GET_VOTES:
+      return {
+        ...state,
+        votes: action.payload,
+      };
     case GET_MY_POSTS:
       return {
         ...state,
@@ -56,6 +64,12 @@ export function myReducer(state = initialState, action) {
         ...state,
         comments: [action.payload, ...(state.comments || [])],
       };
+    case ADD_VOTE:
+      return {
+        ...state,
+        votes: [action.payload, ...[state.votes || []]],
+      };
+
     default:
       return state;
   }

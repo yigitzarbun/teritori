@@ -30,6 +30,7 @@ code {
 .signupForm input,
 .newPostForm textarea,
 .newPostForm input,
+.newCommentForm textarea,
 select {
   @apply p-2 border w-full text-sm;
 }
@@ -40,7 +41,8 @@ select {
 }
 
 .signupForm button,
-.newPostForm button {
+.newPostForm button,
+.newCommentForm button {
   @apply bg-black text-white block p-3 w-full disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl;
 }
 .fieldError {

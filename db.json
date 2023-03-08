@@ -67,6 +67,50 @@
       "username": "yigitz",
       "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
       "id": 8
+    },
+    {
+      "title": "yeni",
+      "body": "a",
+      "district": "Maltepe",
+      "userId": 1,
+      "date": "08/03/2023",
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 9
+    },
+    {
+      "title": "oy",
+      "body": "vote",
+      "district": "Beşiktaş",
+      "userId": 1,
+      "date": "08/03/2023",
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "id": 10
+    },
+    {
+      "title": "oyyyy",
+      "body": "test vote",
+      "district": "Maltepe",
+      "userId": 1,
+      "date": "08/03/2023",
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "upvotes": null,
+      "downvotes": null,
+      "id": 11
+    },
+    {
+      "title": "aaa",
+      "body": "aba",
+      "district": "Kadıköy",
+      "userId": 1,
+      "date": "08/03/2023",
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "upvotes": 0,
+      "downvotes": 0,
+      "id": 12
     }
   ],
   "comments": [
@@ -117,6 +161,607 @@
       "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
       "postId": "3",
       "id": 6
+    },
+    {
+      "body": "test",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "id": 7
+    },
+    {
+      "body": "rtgt",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "id": 8
+    },
+    {
+      "body": "son\n",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 9
+    },
+    {
+      "body": "asd",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 10
+    },
+    {
+      "body": "aaaa",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 11
+    },
+    {
+      "body": "d",
+      "district": "Beşiktaş",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 12
+    },
+    {
+      "body": "sdfs",
+      "district": "Beşiktaş",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 13
+    },
+    {
+      "body": "dfasd",
+      "district": "Adalar",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 14
+    }
+  ],
+  "votes": [
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 1
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 2
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 3
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 4
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 5
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 6
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 7
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 8
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 9
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 10
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 11
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 12
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 13
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 14
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "9",
+      "date": "08/03/2023",
+      "id": 15
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "10",
+      "date": "08/03/2023",
+      "id": 16
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "10",
+      "date": "08/03/2023",
+      "id": 17
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "10",
+      "date": "08/03/2023",
+      "id": 18
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "10",
+      "date": "08/03/2023",
+      "id": 19
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "11",
+      "date": "08/03/2023",
+      "id": 20
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "11",
+      "date": "08/03/2023",
+      "id": 21
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "11",
+      "date": "08/03/2023",
+      "id": 22
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "12",
+      "date": "08/03/2023",
+      "id": 23
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "12",
+      "date": "08/03/2023",
+      "id": 24
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "12",
+      "date": "08/03/2023",
+      "id": 25
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "12",
+      "date": "08/03/2023",
+      "id": 26
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "12",
+      "date": "08/03/2023",
+      "id": 27
+    },
+    {
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "12",
+      "date": "08/03/2023",
+      "id": 28
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "12",
+      "date": "08/03/2023",
+      "id": 29
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "2",
+      "date": "08/03/2023",
+      "id": 30
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "2",
+      "date": "08/03/2023",
+      "id": 31
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "date": "08/03/2023",
+      "id": 32
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "date": "08/03/2023",
+      "id": 33
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "date": "08/03/2023",
+      "id": 34
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "date": "08/03/2023",
+      "id": 35
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "date": "08/03/2023",
+      "id": 36
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "date": "08/03/2023",
+      "id": 37
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "date": "08/03/2023",
+      "id": 38
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 39
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 40
+    },
+    {
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 41
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 42
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 43
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 44
+    },
+    {
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 45
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 46
+    },
+    {
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 47
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 48
+    },
+    {
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 49
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 50
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 51
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 52
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 53
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 54
+    },
+    {
+      "vote": "down",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 55
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 56
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "1",
+      "date": "08/03/2023",
+      "id": 57
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "date": "08/03/2023",
+      "id": 58
+    },
+    {
+      "vote": "up",
+      "userId": 1,
+      "username": "yigitz",
+      "userPic": "https://fastly.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U",
+      "postId": "3",
+      "date": "08/03/2023",
+      "id": 59
     }
   ],
   "users": [
