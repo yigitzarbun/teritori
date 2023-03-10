@@ -127,7 +127,7 @@ function SignupForm() {
       <div className=" max-w-sm mx-auto	flex justify-center">
         <Link to="/giris">
           <p className="mb-10">
-            Do you have an account?{" "}
+            Do you have an account? {""}
             <span className="text-blue-600	font-bold ">Log in</span>
           </p>
         </Link>

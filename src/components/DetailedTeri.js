@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getPosts,
-  getComments,
-  addVote,
-  addComment,
-  getVotes,
-} from "../redux-stuff/actions";
-import { useForm } from "react-hook-form";
-import { format } from "date-fns";
+import { getPosts, getComments, addComment } from "../redux-stuff/actions";
+import NewComment from "./NewComment";
+import Comment from "./Comment";
 
 function DetayliTeri() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const user = useSelector((store) => store.user);
-  const userId = user.user.id;
   const username = user.user.username;
   const userPic = user.user.avatarUrl;
   const comments = useSelector((store) => store.comments);
   const allPosts = useSelector((store) => store.allPosts);
-  const votes = useSelector((store) => store.votes);
+  const [upvote, setUpvote] = useState(false);
+  const [downvote, setDownvote] = useState(false);
+
   useEffect(() => {
     if (!allPosts) {
       dispatch(getPosts());
@@ -28,10 +23,9 @@ function DetayliTeri() {
     if (!comments) {
       dispatch(getComments());
     }
-    if (!votes) {
-      dispatch(getVotes());
-    }
   }, []);
+
+  // ResultJSX >>>
 
   let resultJSX = "";
 
@@ -43,6 +37,9 @@ function DetayliTeri() {
     resultJSX = allPosts.filter((post) => post.id == id)[0];
   }
 
+  const { district, title, body, date } = resultJSX;
+
+  // Comments JSX >>>
   let commentsJSX = "";
   if (comments === null) {
     commentsJSX = "Loading comments";
@@ -51,75 +48,27 @@ function DetayliTeri() {
   } else {
     commentsJSX = comments.filter((comment) => comment.postId == id);
   }
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors, isValid },
-  } = useForm({ mode: "onChange" });
 
-  function handleAddComment(data) {
-    const dataWide = {
-      ...data,
-      userId: userId,
-      username: username,
-      userPic: userPic,
-      postId: id,
-      date: format(new Date(), "dd/MM/yyyy"),
-    };
-    dispatch(addComment(dataWide));
-    reset();
-    setCommentArea(!commentArea);
-  }
-
-  function handleAddVote(vote) {
-    const dataWide = {
-      vote: vote,
-      userId: userId,
-      username: username,
-      userPic: userPic,
-      postId: id,
-      date: format(new Date(), "dd/MM/yyyy"),
-    };
-    dispatch(addVote(dataWide));
-  }
-
+  // Comment area >>>
   const [commentArea, setCommentArea] = useState(false);
+
   const handleCommentArea = () => {
     setCommentArea(!commentArea);
   };
-  const { district, title, body, date } = resultJSX;
 
-  let districts = [
-    "Adalar",
-    "Beşiktaş",
-    "Beyoğlu",
-    "Kadıköy",
-    "Kartal",
-    "Maltepe",
-  ];
-
-  const [upvote, setUpvote] = useState(false);
-  const [downvote, setDownvote] = useState(false);
-
+  // Votes >>>
   const handleUpvote = () => {
     setUpvote(!upvote);
-    if (!upvote) {
-      handleAddVote("up");
-    }
+
     setDownvote(false);
   };
   const handleDownvote = () => {
     setDownvote(!downvote);
-    if (!downvote) {
-      handleAddVote("down");
-    }
     setUpvote(false);
   };
 
   return (
     <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
-      <p>{votes.length}</p>
       {commentArea ? (
         <img
           src="/images/cancel.png"
@@ -138,46 +87,12 @@ function DetayliTeri() {
 
       <div>
         {commentArea && (
-          <form
-            onSubmit={handleSubmit(handleAddComment)}
-            className="newCommentForm max-w-md mx-auto bg-white shadow p-8 rounded-xl"
-          >
-            <img
-              src={userPic}
-              alt="userAvatar"
-              className="rounded-full w-8 h-8 mr-2"
-            />
-            <h2>Leave your comment regarding: </h2>
-            <span className="font-bold text-xl">{title}</span>
-
-            <textarea
-              {...register("body", {
-                required: "Write something",
-                maxLength: { value: 150, message: "Max length 150 characters" },
-              })}
-              name="body"
-              id="body"
-              rows="6"
-              placeholder="Your message.."
-              className="mt-4"
-            ></textarea>
-            <select
-              name="district"
-              {...register("district", { required: "Select a district" })}
-            >
-              <option value="">
-                --Choose a district relevant to your post--
-              </option>
-              {districts.map((district) => (
-                <option key={district} value={district}>
-                  {district}
-                </option>
-              ))}
-            </select>
-            <button type="submit" disabled={!isValid} className="mt-4">
-              Send
-            </button>
-          </form>
+          <NewComment
+            commentArea={commentArea}
+            setCommentArea={setCommentArea}
+            id={id}
+            title={title}
+          />
         )}
       </div>
       <div className="flex">
@@ -219,28 +134,7 @@ function DetayliTeri() {
       <div className="mt-12">
         {Array.isArray(commentsJSX) &&
           commentsJSX.map((comment) => (
-            <div className="my-8 p-6 border rounded-xl ">
-              <div className="flex justify-between">
-                <p className="text-xs text-blue-600 mr-auto italic">
-                  {comment.district}
-                </p>
-                <p className="text-sm text-blue-600 ">{comment.date}</p>
-              </div>
-              <p className="box-border break-words w-full mb-8">
-                {comment.body}
-              </p>
-
-              <div className="flex items-center">
-                <img
-                  src={comment.userPic}
-                  alt="userAvatar"
-                  className="rounded-full w-8 h-8 mr-2"
-                />
-                <p className="font-bold text-sm text-blue-600">
-                  {comment.username}
-                </p>
-              </div>
-            </div>
+            <Comment key={comment.id} comment={comment} />
           ))}
       </div>
     </div>

@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 function NewPost() {
   const history = useHistory();
   const user = useSelector((store) => store.user);
+  const districts = useSelector((store) => store.districts);
   const userId = user.user.id;
   const username = user.user.username;
   const userPic = user.user.avatarUrl;
@@ -29,14 +30,6 @@ function NewPost() {
     dispatch(addPost(dataWide, history));
     reset();
   }
-  let districts = [
-    "Adalar",
-    "Beşiktaş",
-    "Beyoğlu",
-    "Kadıköy",
-    "Kartal",
-    "Maltepe",
-  ];
 
   return (
     <form

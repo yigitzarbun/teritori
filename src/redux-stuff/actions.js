@@ -17,8 +17,6 @@ export const GET_MY_POSTS = "GET_MY_POSTS";
 export const ADD_POST = "ADD_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const GET_COMMENTS = "GET_COMMENTS";
-export const ADD_VOTE = "ADD_VOTE";
-export const GET_VOTES = "GET_VOTES";
 
 export const loginWith = (formData, history) => (dispatch) => {
   axios
@@ -53,11 +51,6 @@ export const getComments = () => (dispatch) => {
     dispatch({ type: GET_COMMENTS, payload: response.data });
   });
 };
-export const getVotes = () => (dispatch) => {
-  axios.get("http://localhost:5000/votes").then((response) => {
-    dispatch({ type: GET_VOTES, payload: response.data });
-  });
-};
 export const getMyPosts = (user) => (dispatch) => {
   axios
     .get("http://localhost:5000/640/posts", {
@@ -75,7 +68,6 @@ export const getMyPosts = (user) => (dispatch) => {
       console.log(error);
     });
 };
-
 export const addPost = (data, history) => (dispatch) => {
   axios
     .post("http://localhost:5000/posts", data)
@@ -90,20 +82,11 @@ export const addPost = (data, history) => (dispatch) => {
     })
     .catch((error) => console.log(error));
 };
-
 export const addComment = (data) => (dispatch) => {
   axios.post("http://localhost:5000/comments", data).then((response) => {
     if (response.status == 201) {
       toast.success("Comment successful!");
       dispatch({ type: ADD_COMMENT, payload: response.data });
-    }
-  });
-};
-
-export const addVote = (data) => (dispatch) => {
-  axios.post("http://localhost:5000/votes", data).then((response) => {
-    if (response.status == 201) {
-      dispatch({ type: ADD_VOTE, payload: response.data });
     }
   });
 };
