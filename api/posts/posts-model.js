@@ -1,0 +1,30 @@
+const db = require("../../data/dbConfig");
+
+async function getAll() {
+  const posts = await db("posts");
+  return posts;
+}
+
+async function getBy(filter) {
+  const result = await db("posts").where(filter).first();
+  return result;
+}
+
+async function getById(post_id) {
+  const post = await db("posts").where("post_id", post_id).first();
+  return post;
+}
+
+async function add(post) {
+  const postIdArray = await db("posts").insert(post);
+  const postId = postIdArray[0];
+  const newPost = await db("posts").where("post_id", postId).first();
+  return newPost;
+}
+
+module.exports = {
+  getAll,
+  getBy,
+  getById,
+  add,
+};
