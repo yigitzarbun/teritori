@@ -9,23 +9,21 @@ function NewPost() {
   const history = useHistory();
   const user = useSelector((store) => store.user);
   const districts = useSelector((store) => store.districts);
-  const userId = user.user.id;
-  const username = user.user.username;
-  const userPic = user.user.avatarUrl;
+  const userId = user.user.user_id;
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
+
   const dispatch = useDispatch();
+
   function handleAddPost(data) {
     const dataWide = {
       ...data,
-      userId: userId,
-      date: format(new Date(), "dd/MM/yyyy"),
-      username: username,
-      userPic: userPic,
+      user_id: userId,
+      post_date: format(new Date(), "dd/MM/yyyy"),
     };
     dispatch(addPost(dataWide, history));
     reset();

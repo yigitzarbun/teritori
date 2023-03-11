@@ -22,7 +22,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const post = req.body;
+    const post = await postsModel.add(req.body);
     res.status(201).json(post);
   } catch (error) {
     next(error);
