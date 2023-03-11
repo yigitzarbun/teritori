@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 function SignupForm() {
   const {
@@ -16,13 +17,15 @@ function SignupForm() {
   const history = useHistory();
 
   function handleSignupForm(data) {
-    const gonderilecekVeri = { ...data };
-    delete gonderilecekVeri.password2;
+    const dataWide = {
+      ...data,
+      signup_date: format(new Date(), "dd/MM/yyyy"),
+    };
+    delete dataWide.password2;
     axios
-      .post("  http://localhost:5000/users", gonderilecekVeri)
+      .post("  http://localhost:9000/api/auth/register", dataWide)
       .then((response) => {
         if (response.status === 201) {
-          console.log(response.data.accessToken, response.data.user);
           toast.success("Register successful!");
           history.push("/giris");
         }
@@ -63,6 +66,20 @@ function SignupForm() {
             {...register("username", { required: "You must set a username" })}
             id="username"
             placeholder="e.g. chatoic_potato"
+            type="text"
+          />
+        </div>
+        <div>
+          <label className="block" htmlFor="district">
+            District
+            {errors.district && (
+              <span className="fieldError">{errors.district.message}</span>
+            )}
+          </label>
+          <input
+            {...register("district", { required: "You must set a district" })}
+            id="district"
+            placeholder="e.g. maltepe"
             type="text"
           />
         </div>

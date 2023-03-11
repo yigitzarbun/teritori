@@ -29,7 +29,7 @@ const userNameTaken = async (req, res, next) => {
   const { username } = req.body;
   const userNameUnique = await usersModel.getBy({ username });
   if (userNameUnique) {
-    res.status(400).json("Username is already taken");
+    res.status(400).json({ message: "Username is already taken" });
   } else {
     next();
   }
@@ -40,7 +40,7 @@ const userNameExists = async (req, res, next) => {
   const { username } = req.body;
   const userNameUnique = await usersModel.getBy({ username });
   if (!userNameUnique) {
-    res.status(400).json("Invalid credentials");
+    res.status(400).json({ message: "Invalid credentials" });
   } else {
     next();
   }

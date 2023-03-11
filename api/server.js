@@ -3,9 +3,24 @@ const cors = require("cors");
 const helmet = require("helmet");
 const authRouter = require("./auth/auth-router");
 const postsRouter = require("./posts/posts-router");
+const restrict = require("./middleware/restricted");
 const server = express();
+const session = require("express-session");
 server.use(cors());
 server.use(express.json());
+server.use(
+  session({
+    name: "cikolatacips",
+    secret: "nobody tosses a dwarf!",
+    cookie: {
+      maxAge: 1 * 24 * 60 * 60 * 1000,
+      secure: false,
+    },
+    httpOnly: false,
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 server.use("/api/auth", authRouter);
 server.use("/api/posts", postsRouter);

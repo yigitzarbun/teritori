@@ -35,10 +35,9 @@ router.post(
       .getBy({ username })
       .then((user) => {
         if (user && bcrypt.compareSync(password, user.password)) {
-          const token = generateToken(user);
-          res
-            .status(200)
-            .json({ message: `Welcome to Teritori, ${username}`, token });
+          //const token = generateToken(user);
+          req.session.user = user;
+          res.status(200).json({ user });
         } else {
           res.status(401).json({ message: "Invalid credentials" });
         }

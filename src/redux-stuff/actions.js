@@ -20,9 +20,9 @@ export const GET_COMMENTS = "GET_COMMENTS";
 
 export const loginWith = (formData, history) => (dispatch) => {
   axios
-    .post("  http://localhost:5000/login", formData)
+    .post("http://localhost:9000/api/auth/login", formData)
     .then((response) => {
-      if (response.status === 200) {
+      if (response.status == 200) {
         dispatch({ type: LOGIN, payload: response.data });
         toast.success("Login successful");
         setTimeout(() => {
@@ -31,14 +31,14 @@ export const loginWith = (formData, history) => (dispatch) => {
       }
     })
     .catch((error) => {
-      toast.error(error.response.data);
+      toast.error(error.response.data.message);
       console.log("login hata: ", error);
     });
 };
 
 export const getPosts = () => (dispatch) => {
   axios
-    .get("http://localhost:5000/posts")
+    .get("http://localhost:9000/api/posts")
     .then((response) => {
       dispatch({ type: GET_POSTS, payload: response.data });
     })
@@ -70,7 +70,7 @@ export const getMyPosts = (user) => (dispatch) => {
 };
 export const addPost = (data, history) => (dispatch) => {
   axios
-    .post("http://localhost:5000/posts", data)
+    .post("http://localhost:9000/api/posts", data)
     .then((response) => {
       if (response.status === 201) {
         toast.success("Post successful!");

@@ -8,7 +8,6 @@ function Header(props) {
   const { handleSearch, searchTerm } = props;
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-
   // Handlers >>>
   const notifyLogin = () => {
     if (user == null) {

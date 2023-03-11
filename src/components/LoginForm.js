@@ -29,15 +29,15 @@ function LoginForm() {
         <h1 className="text-2xl text-center mb-4">Log in</h1>
         <div>
           <label className="block" htmlFor="email">
-            Email
-            {errors.email && (
-              <span className="fieldError">{errors.email.message}</span>
+            Username
+            {errors.username && (
+              <span className="fieldError">{errors.username.message}</span>
             )}
           </label>
           <input
-            {...register("email", { required: "Email girmelisin" })}
-            id="email"
-            placeholder="e.g. johndoe@somewhere.com"
+            {...register("username", { required: "Username is required" })}
+            id="username"
+            placeholder="e.g. user123"
           />
         </div>
 
