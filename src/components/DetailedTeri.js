@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getPosts, getComments, addComment } from "../redux-stuff/actions";
+import { getPosts, getComments } from "../redux-stuff/actions";
 import NewComment from "./NewComment";
 import Comment from "./Comment";
 
@@ -9,8 +9,7 @@ function DetayliTeri() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const user = useSelector((store) => store.user);
-  const username = user.user.username;
-  const userPic = user.user.avatarUrl;
+  const userPic = user.avatarUrl;
   const comments = useSelector((store) => store.comments);
   const allPosts = useSelector((store) => store.allPosts);
   const [upvote, setUpvote] = useState(false);
@@ -24,9 +23,7 @@ function DetayliTeri() {
       dispatch(getComments());
     }
   }, []);
-
   // ResultJSX >>>
-
   let resultJSX = "";
 
   if (allPosts === null) {
@@ -34,11 +31,10 @@ function DetayliTeri() {
   } else if (allPosts.length === 0) {
     resultJSX = "No posts available";
   } else {
-    resultJSX = allPosts.filter((post) => post.id == id)[0];
+    resultJSX = allPosts.filter((post) => post.post_id == id)[0];
   }
-
-  const { district, title, body, date } = resultJSX;
-
+  const { district, title, body, post_date, username } = resultJSX;
+  console.log(resultJSX);
   // Comments JSX >>>
   let commentsJSX = "";
   if (comments === null) {
@@ -46,9 +42,8 @@ function DetayliTeri() {
   } else if (comments.length === 0) {
     commentsJSX = "No comments available";
   } else {
-    commentsJSX = comments.filter((comment) => comment.postId == id);
+    commentsJSX = comments.filter((comment) => comment.post_id == id);
   }
-
   // Comment area >>>
   const [commentArea, setCommentArea] = useState(false);
 
@@ -66,7 +61,6 @@ function DetayliTeri() {
     setDownvote(!downvote);
     setUpvote(false);
   };
-
   return (
     <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
       {commentArea ? (
@@ -103,7 +97,7 @@ function DetayliTeri() {
 
           <p className="box-border break-words w-full mb-8">{body}</p>
         </div>
-        <p className="text-sm text-blue-600 mr-auto">{date}</p>
+        <p className="text-sm text-blue-600 mr-auto">{post_date}</p>
       </div>
       <div className="flex mb-8">
         <button className="mr-4">
@@ -134,7 +128,7 @@ function DetayliTeri() {
       <div className="mt-12">
         {Array.isArray(commentsJSX) &&
           commentsJSX.map((comment) => (
-            <Comment key={comment.id} comment={comment} />
+            <Comment key={comment.comment_id} comment={comment} />
           ))}
       </div>
     </div>

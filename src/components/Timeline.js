@@ -15,7 +15,6 @@ function TimeLine(props) {
   }, [allPosts]);
 
   let resultJSX = "";
-
   if (allPosts === null) {
     resultJSX = "Loading posts";
   } else if (allPosts.length === 0) {
@@ -37,7 +36,6 @@ function TimeLine(props) {
       })
       .map((post) => <Teri key={post.id} post={post} />);
   }
-
   return <div className="shadow-xl mb-16 rounded-full">{resultJSX}</div>;
 }
 

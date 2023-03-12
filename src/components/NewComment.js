@@ -8,25 +8,21 @@ function NewComment(props) {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const districts = useSelector((store) => store.districts);
-  const userId = user.user.id;
-  const username = user.user.username;
-  const userPic = user.user.avatarUrl;
+  const userId = user.user_id;
+  const userPic = user.avatarUrl;
   const { commentArea, setCommentArea, id, title } = props;
-
+  const postId = Number(id);
   function handleAddComment(data) {
     const dataWide = {
       ...data,
-      userId: userId,
-      username: username,
-      userPic: userPic,
-      postId: id,
-      date: format(new Date(), "dd/MM/yyyy"),
+      user_id: userId,
+      post_id: postId,
+      comment_date: format(new Date(), "dd/MM/yyyy"),
     };
     dispatch(addComment(dataWide));
     reset();
     setCommentArea(!commentArea);
   }
-
   // Comment form requirements
   const {
     register,

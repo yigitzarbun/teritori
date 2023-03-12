@@ -37,6 +37,7 @@ exports.seed = async function (knex) {
     {
       body: "this is a test comment",
       comment_date: "2023 - 01 - 01",
+      district: "maltepe",
       post_id: 1,
       user_id: 2,
     },

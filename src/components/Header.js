@@ -26,15 +26,18 @@ function Header(props) {
             teritori
           </Link>
         </h1>
-        <input
-          type="text"
-          name="search"
-          id="search"
-          onChange={handleSearch}
-          value={searchTerm}
-          placeholder="Search in teritori"
-          className="shadow-md rounded-full pl-2"
-        />
+        {user && (
+          <input
+            type="text"
+            name="search"
+            id="search"
+            onChange={handleSearch}
+            value={searchTerm}
+            placeholder="Search in teritori"
+            className="shadow-md rounded-full pl-2"
+          />
+        )}
+
         <nav className="flex justify-between w-1/2">
           <Link className="p-2" to="/son-postlar" onClick={notifyLogin}>
             Discover
@@ -44,7 +47,7 @@ function Header(props) {
           </Link>
           <Link
             className="p-2"
-            to={`/kullanici/${user ? user.user.id : "-1"}`}
+            to={`/kullanici/${user ? user.user_id : "-1"}`}
             onClick={notifyLogin}
           >
             My Profile

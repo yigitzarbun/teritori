@@ -3,6 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const authRouter = require("./auth/auth-router");
 const postsRouter = require("./posts/posts-router");
+const commentsRouter = require("./comments/comments-router");
 const restrict = require("./middleware/restricted");
 const server = express();
 const session = require("express-session");
@@ -24,7 +25,7 @@ server.use(
 
 server.use("/api/auth", authRouter);
 server.use("/api/posts", postsRouter);
-
+server.use("/api/comments", commentsRouter);
 server.get("/", (req, res) => {
   res.status(200).json({ message: "hello world" });
 });

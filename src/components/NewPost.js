@@ -9,7 +9,7 @@ function NewPost() {
   const history = useHistory();
   const user = useSelector((store) => store.user);
   const districts = useSelector((store) => store.districts);
-  const userId = user.user.user_id;
+  const userId = user.user_id;
   const {
     register,
     handleSubmit,

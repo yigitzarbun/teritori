@@ -38,8 +38,8 @@ const userNameTaken = async (req, res, next) => {
 // Does username exists in DB (LOGIN) >>>
 const userNameExists = async (req, res, next) => {
   const { username } = req.body;
-  const userNameUnique = await usersModel.getBy({ username });
-  if (!userNameUnique) {
+  const userValid = await usersModel.getBy({ username });
+  if (!userValid) {
     res.status(400).json({ message: "Invalid credentials" });
   } else {
     next();

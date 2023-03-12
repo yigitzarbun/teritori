@@ -32,6 +32,7 @@ exports.up = function (knex) {
       tbl.increments("comment_id");
       tbl.string("body");
       tbl.timestamp("comment_date").notNullable();
+      tbl.string("district").notNullable();
       tbl
         .integer("post_id")
         .unsigned()

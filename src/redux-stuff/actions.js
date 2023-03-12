@@ -47,7 +47,7 @@ export const getPosts = () => (dispatch) => {
     });
 };
 export const getComments = () => (dispatch) => {
-  axios.get("http://localhost:5000/comments").then((response) => {
+  axios.get("http://localhost:9000/api/comments").then((response) => {
     dispatch({ type: GET_COMMENTS, payload: response.data });
   });
 };
@@ -83,7 +83,7 @@ export const addPost = (data, history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 export const addComment = (data) => (dispatch) => {
-  axios.post("http://localhost:5000/comments", data).then((response) => {
+  axios.post("http://localhost:9000/api/comments", data).then((response) => {
     if (response.status == 201) {
       toast.success("Comment successful!");
       dispatch({ type: ADD_COMMENT, payload: response.data });
