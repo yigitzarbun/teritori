@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { LOGOUT } from "../redux-stuff/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 function Header(props) {
-  const { handleSearch, searchTerm } = props;
+  const { handleSearch, searchTerm, clearSearch } = props;
+  const history = useHistory();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   // Handlers >>>
@@ -18,6 +19,10 @@ function Header(props) {
     dispatch({ type: LOGOUT });
   };
 
+  const redirectSearch = () => {
+    history.push("/son-postlar");
+    handleSearch(searchTerm);
+  };
   return (
     <div>
       <header className="flex items-center justify-between mb-4 py-4">
@@ -26,18 +31,6 @@ function Header(props) {
             teritori
           </Link>
         </h1>
-        {user && (
-          <input
-            type="text"
-            name="search"
-            id="search"
-            onChange={handleSearch}
-            value={searchTerm}
-            placeholder="Search in teritori"
-            className="shadow-md rounded-full pl-2"
-          />
-        )}
-
         <nav className="flex justify-between w-1/2">
           <Link className="p-2" to="/son-postlar" onClick={notifyLogin}>
             Discover
@@ -50,7 +43,10 @@ function Header(props) {
             to={`/kullanici/${user ? user.user_id : "-1"}`}
             onClick={notifyLogin}
           >
-            My Profile
+            {user && user.username}
+          </Link>
+          <Link className="p-2" to="/users" onClick={notifyLogin}>
+            Users
           </Link>
           {user ? (
             <button onClick={handleLogout}>Log out</button>
@@ -67,6 +63,33 @@ function Header(props) {
           )}
         </nav>
       </header>
+      {user && (
+        <div className="mb-4 flex justify-between">
+          <input
+            type="text"
+            name="search"
+            id="search"
+            onChange={handleSearch}
+            value={searchTerm}
+            placeholder="Search in teritori"
+            className="shadow-md bg-[#F8F5F0] rounded-full pl-2 py-2 w-full mr-8"
+          />
+          <div className="w-1/3 flex justify-between">
+            <button
+              onClick={redirectSearch}
+              className="bg-black hover:bg-blue-600  text-white block px-3 w-3/8 disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl	"
+            >
+              Search
+            </button>
+            <button
+              className="bg-black hover:bg-blue-600  text-white block px-3 w-3/8 disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl	"
+              onClick={clearSearch}
+            >
+              Clear
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

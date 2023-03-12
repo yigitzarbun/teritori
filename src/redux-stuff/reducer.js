@@ -7,11 +7,12 @@ import {
   ADD_POST,
   ADD_COMMENT,
   GET_COMMENTS,
-  SEARCH_TERM,
+  USERS,
 } from "./actions";
 
 const initialState = {
   user: getUserFromLs(),
+  users: null,
   allPosts: null,
   myPosts: null,
   comments: null,
@@ -59,6 +60,11 @@ export function myReducer(state = initialState, action) {
       return {
         ...state,
         comments: [action.payload, ...(state.comments || [])],
+      };
+    case USERS:
+      return {
+        ...state,
+        users: action.payload,
       };
     default:
       return state;

@@ -17,6 +17,7 @@ export const GET_MY_POSTS = "GET_MY_POSTS";
 export const ADD_POST = "ADD_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const GET_COMMENTS = "GET_COMMENTS";
+export const USERS = "USERS";
 
 export const loginWith = (formData, history) => (dispatch) => {
   axios
@@ -53,14 +54,14 @@ export const getComments = () => (dispatch) => {
 };
 export const getMyPosts = (user) => (dispatch) => {
   axios
-    .get("http://localhost:5000/640/posts", {
+    .get("http://localhost:9000/api/posts", {
       headers: {
         Authorization: `Bearer ${user.accessToken}`,
       },
     })
     .then((response) => {
       const myPosts = response.data.filter(
-        (post) => post.userId === user.user.id
+        (post) => post.user_id === user.user_id
       );
       dispatch({ type: GET_MY_POSTS, payload: myPosts });
     })
@@ -87,6 +88,14 @@ export const addComment = (data) => (dispatch) => {
     if (response.status == 201) {
       toast.success("Comment successful!");
       dispatch({ type: ADD_COMMENT, payload: response.data });
+    }
+  });
+};
+
+export const getUsers = () => (dispatch) => {
+  axios.get("http://localhost:9000/api/users").then((response) => {
+    if (response.status == 200) {
+      dispatch({ type: USERS, payload: response.data });
     }
   });
 };

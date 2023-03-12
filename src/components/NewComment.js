@@ -42,7 +42,7 @@ function NewComment(props) {
         className="rounded-full w-8 h-8 mr-2"
       />
       <h2>Leave your comment regarding: </h2>
-      <span className="font-bold text-xl">{title}</span>
+      <span className="font-bold text-xl text-blue-600">{title}</span>
 
       <textarea
         {...register("body", {

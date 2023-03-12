@@ -19,10 +19,9 @@ function DetayliTeri() {
     if (!allPosts) {
       dispatch(getPosts());
     }
-    if (!comments) {
-      dispatch(getComments());
-    }
-  }, []);
+    dispatch(getComments());
+  }, [comments]);
+
   // ResultJSX >>>
   let resultJSX = "";
 
@@ -34,7 +33,6 @@ function DetayliTeri() {
     resultJSX = allPosts.filter((post) => post.post_id == id)[0];
   }
   const { district, title, body, post_date, username } = resultJSX;
-  console.log(resultJSX);
   // Comments JSX >>>
   let commentsJSX = "";
   if (comments === null) {
@@ -54,7 +52,6 @@ function DetayliTeri() {
   // Votes >>>
   const handleUpvote = () => {
     setUpvote(!upvote);
-
     setDownvote(false);
   };
   const handleDownvote = () => {
@@ -63,23 +60,16 @@ function DetayliTeri() {
   };
   return (
     <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
-      {commentArea ? (
+      {commentArea && (
         <img
           src="/images/cancel.png"
           alt="comment"
           onClick={handleCommentArea}
           className="w-8"
         />
-      ) : (
-        <img
-          src="/images/comment.png"
-          alt="cancel"
-          onClick={handleCommentArea}
-          className="w-8 mb-8"
-        />
       )}
 
-      <div>
+      <div className="mb-16">
         {commentArea && (
           <NewComment
             commentArea={commentArea}
@@ -125,6 +115,15 @@ function DetayliTeri() {
         />
         <p className="font-bold text-sm text-blue-600">{username}</p>
       </div>
+      {!commentArea && (
+        <button
+          onClick={handleCommentArea}
+          className="bg-black hover:bg-blue-600 mt-8 mb-8 text-white block p-3 w-1/2 mx-auto disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl	"
+        >
+          Comment
+        </button>
+      )}
+
       <div className="mt-12">
         {Array.isArray(commentsJSX) &&
           commentsJSX.map((comment) => (

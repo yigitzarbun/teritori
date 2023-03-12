@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Teri(props) {
-  const { body, date, username, userPic, title, district, post_id } =
+  const { body, post_date, username, userPic, title, district, post_id } =
     props.post;
+
   return (
     <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
       <div className="flex">
@@ -16,7 +17,7 @@ function Teri(props) {
 
           <p className="box-border break-words w-full mb-8">{body}</p>
         </div>
-        <p className="text-sm text-blue-600 mr-auto">{date}</p>
+        <p className="text-sm text-blue-600 mr-auto">{post_date}</p>
       </div>
       <div className="flex mb-8">
         <button className="mr-4">
