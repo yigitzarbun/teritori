@@ -60,13 +60,28 @@ function DetayliTeri() {
   };
   return (
     <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
-      {commentArea && (
+      {commentArea ? (
         <img
           src="/images/cancel.png"
-          alt="comment"
+          alt="close-comment"
           onClick={handleCommentArea}
-          className="w-8"
+          className="w-8 cursor-pointer"
         />
+      ) : (
+        <div className="flex">
+          <img
+            src="/images/comment.png"
+            alt="comment"
+            onClick={handleCommentArea}
+            className="w-8 cursor-pointer"
+          />
+          <p
+            className="ml-2 text-sm text-blue-600 cursor-pointer"
+            onClick={handleCommentArea}
+          >
+            Add Comment
+          </p>
+        </div>
       )}
 
       <div className="mb-16">
@@ -115,14 +130,6 @@ function DetayliTeri() {
         />
         <p className="font-bold text-sm text-blue-600">{username}</p>
       </div>
-      {!commentArea && (
-        <button
-          onClick={handleCommentArea}
-          className="bg-black hover:bg-blue-600 mt-8 mb-8 text-white block p-3 w-1/2 mx-auto disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl	"
-        >
-          Comment
-        </button>
-      )}
 
       <div className="mt-12">
         {Array.isArray(commentsJSX) &&

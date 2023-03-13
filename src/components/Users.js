@@ -8,7 +8,7 @@ function Users() {
   const users = useSelector((store) => store.users);
   useEffect(() => {
     if (!users) {
-      dispatch(getUsers);
+      dispatch(getUsers());
     }
   }, []);
   let resultJSX = "";
