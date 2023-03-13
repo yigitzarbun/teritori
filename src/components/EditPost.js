@@ -27,6 +27,7 @@ function EditPost(props) {
       post_date: format(new Date(), "dd/MM/yyyy"),
     };
     dispatch(editPost(dataWide, history));
+    props.handleEditArea(!props.editArea);
     reset();
   }
 

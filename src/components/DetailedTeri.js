@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getPosts, getComments, editPost } from "../redux-stuff/actions";
+import {
+  getPosts,
+  getComments,
+  deletePost,
+  addVote,
+} from "../redux-stuff/actions";
 import NewComment from "./NewComment";
 import Comment from "./Comment";
 import EditPost from "./EditPost";
+import { format } from "date-fns";
 
 function DetayliTeri() {
   const dispatch = useDispatch();
@@ -13,6 +19,7 @@ function DetayliTeri() {
   const userPic = user.avatarUrl;
   const comments = useSelector((store) => store.comments);
   const allPosts = useSelector((store) => store.allPosts);
+  const history = useHistory();
   const [upvote, setUpvote] = useState(false);
   const [downvote, setDownvote] = useState(false);
 
@@ -35,7 +42,9 @@ function DetayliTeri() {
   }
   const { district, title, body, post_date, username, user_id, post_id } =
     resultJSX;
+
   // Comments JSX >>>
+
   let commentsJSX = "";
   if (comments === null) {
     commentsJSX = "Loading comments";
@@ -45,6 +54,7 @@ function DetayliTeri() {
     commentsJSX = comments.filter((comment) => comment.post_id == id);
   }
   // Comment area >>>
+
   const [commentArea, setCommentArea] = useState(false);
 
   const handleCommentArea = () => {
@@ -55,10 +65,30 @@ function DetayliTeri() {
   const handleUpvote = () => {
     setUpvote(!upvote);
     setDownvote(false);
+    if (upvote) {
+      dispatch(
+        addVote({
+          vote: "up",
+          vote_date: format(new Date(), "dd/MM/yyyy"),
+          post_id: post_id,
+          user_id: user.user_id,
+        })
+      );
+    }
   };
   const handleDownvote = () => {
     setDownvote(!downvote);
     setUpvote(false);
+    if (downvote) {
+      dispatch(
+        addVote({
+          vote: "down",
+          vote_date: format(new Date(), "dd/MM/yyyy"),
+          post_id: post_id,
+          user_id: user.user_id,
+        })
+      );
+    }
   };
 
   // Edit Post >>>
@@ -66,17 +96,33 @@ function DetayliTeri() {
   const handleEditArea = () => {
     setEditArea(!editArea);
   };
+
+  // Delete Post >>>
+  const handleDeletePost = () => {
+    dispatch(deletePost(id));
+    history.push("/son-postlar");
+  };
+
   return (
     <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
       <div className="flex justify-between">
-        {commentArea ? (
+        {commentArea && (
           <img
             src="/images/cancel.png"
             alt="close-comment"
             onClick={handleCommentArea}
             className="w-6 cursor-pointer"
           />
-        ) : (
+        )}
+        {editArea && (
+          <img
+            src="/images/cancel.png"
+            alt="close-comment"
+            onClick={handleEditArea}
+            className="w-6 cursor-pointer"
+          />
+        )}
+        {!editArea && !commentArea && (
           <div className="flex w-5/6">
             <img
               src="/images/comment.png"
@@ -92,7 +138,7 @@ function DetayliTeri() {
             </p>
           </div>
         )}
-        {user.user_id == user_id && !commentArea && (
+        {user.user_id == user_id && !commentArea && !editArea && (
           <div className="flex mr-auto">
             <div className="flex ">
               <img
@@ -107,6 +153,7 @@ function DetayliTeri() {
                 src="/images/delete.png"
                 alt="edit-post"
                 className="w-6 cursor-pointer "
+                onClick={handleDeletePost}
               />
             </div>
           </div>
@@ -128,6 +175,7 @@ function DetayliTeri() {
           <EditPost
             editArea={editArea}
             setEditArea={setEditArea}
+            handleEditArea={handleEditArea}
             post_id={post_id}
           />
         </div>

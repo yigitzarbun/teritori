@@ -9,6 +9,8 @@ import {
   GET_COMMENTS,
   USERS,
   EDIT_POST,
+  DELETE_POST,
+  ADD_VOTE,
 } from "./actions";
 
 const initialState = {
@@ -78,6 +80,20 @@ export function myReducer(state = initialState, action) {
       return {
         ...state,
         allPosts: [...copyPosts],
+      };
+    case DELETE_POST:
+      const copyPosts2 = [...state.allPosts];
+      const resultPosts = copyPosts2.filter(
+        (p) => action.payload !== p.post_id
+      );
+      return {
+        ...state,
+        allPosts: [...resultPosts],
+      };
+    case ADD_VOTE:
+      return {
+        ...state,
+        votes: [action.payload, ...(state.votes || [])],
       };
     default:
       return state;

@@ -65,7 +65,6 @@ function NewPost() {
           placeholder="Your message.."
           className="mt-4"
         ></textarea>
-
         <select
           name="district"
           {...register("district", { required: "Select a district" })}

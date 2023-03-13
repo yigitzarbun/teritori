@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Teri(props) {
-  const { body, post_date, username, userPic, title, district, post_id } =
+  const { body, post_date, username, avatarUrl, title, district, post_id } =
     props.post;
 
   return (
@@ -28,7 +28,7 @@ function Teri(props) {
       </div>
       <div className="flex items-center">
         <img
-          src={userPic}
+          src={avatarUrl}
           alt="userAvatar"
           className="rounded-full w-8 h-8 mr-2"
         />

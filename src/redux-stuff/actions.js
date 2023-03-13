@@ -19,6 +19,8 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const GET_COMMENTS = "GET_COMMENTS";
 export const USERS = "USERS";
 export const EDIT_POST = "EDIT_POST";
+export const DELETE_POST = "DELETE_POST";
+export const ADD_VOTE = "ADD_VOTE";
 
 export const loginWith = (formData, history) => (dispatch) => {
   axios
@@ -110,4 +112,21 @@ export const editPost = (data) => (dispatch) => {
         dispatch({ type: EDIT_POST, payload: response.data });
       }
     });
+};
+
+export const deletePost = (id) => (dispatch) => {
+  axios.delete(`http://localhost:9000/api/posts/${id}`).then((response) => {
+    if (response.status == 201) {
+      toast.success("Post deleted!");
+      dispatch({ type: DELETE_POST, payload: response.data });
+    }
+  });
+};
+
+export const addVote = (data) => (dispatch) => {
+  axios.post("http://localhost:9000/api/votes", data).then((response) => {
+    if (response.status == 201) {
+      dispatch({ type: ADD_VOTE, payload: response.data });
+    }
+  });
 };

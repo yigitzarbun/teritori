@@ -26,7 +26,7 @@ exports.up = function (knex) {
         .references("user_id")
         .inTable("users")
         .onUpdate("CASCADE")
-        .onUpdate("CASCADE");
+        .onDelete("CASCADE");
     })
     .createTable("comments", (tbl) => {
       tbl.increments("comment_id");
@@ -39,14 +39,14 @@ exports.up = function (knex) {
         .references("post_id")
         .inTable("posts")
         .onUpdate("CASCADE")
-        .onUpdate("CASCADE");
+        .onDelete("CASCADE");
       tbl
         .integer("user_id")
         .unsigned()
         .references("user_id")
         .inTable("users")
         .onUpdate("CASCADE")
-        .onUpdate("CASCADE");
+        .onDelete("CASCADE");
     })
     .createTable("votes", (tbl) => {
       tbl.increments("vote_id");
@@ -58,14 +58,14 @@ exports.up = function (knex) {
         .references("post_id")
         .inTable("posts")
         .onUpdate("CASCADE")
-        .onUpdate("CASCADE");
+        .onDelete("CASCADE");
       tbl
         .integer("user_id")
         .unsigned()
         .references("user_id")
         .inTable("users")
         .onUpdate("CASCADE")
-        .onUpdate("CASCADE");
+        .onDelete("CASCADE");
     });
 };
 

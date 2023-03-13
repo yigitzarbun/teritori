@@ -5,8 +5,11 @@ import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
+import { useSelector } from "react-redux";
 
 function SignupForm() {
+  const districts = useSelector((store) => store.districts);
+
   const {
     register,
     handleSubmit,
@@ -70,18 +73,17 @@ function SignupForm() {
           />
         </div>
         <div>
-          <label className="block" htmlFor="district">
-            District
-            {errors.district && (
-              <span className="fieldError">{errors.district.message}</span>
-            )}
-          </label>
-          <input
-            {...register("district", { required: "You must set a district" })}
-            id="district"
-            placeholder="e.g. maltepe"
-            type="text"
-          />
+          <select
+            name="district"
+            {...register("district", { required: "Select a district" })}
+          >
+            <option value="">District</option>
+            {districts.map((district) => (
+              <option key={district} value={district}>
+                {district}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block" htmlFor="avatarUrl">

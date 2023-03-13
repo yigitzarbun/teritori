@@ -31,18 +31,22 @@ code {
 .newPostForm textarea,
 .newPostForm input,
 .newCommentForm textarea,
+.editPostForm textarea,
+.editPostForm input,
 select {
   @apply p-2 border w-full text-sm;
 }
 
 .signupForm label,
-.newPostForm label {
+.newPostForm label,
+.editPostForm label {
   @apply mb-1 flex items-center justify-between;
 }
 
 .signupForm button,
 .newPostForm button,
-.newCommentForm button {
+.newCommentForm button,
+.editPostForm button {
   @apply bg-black text-white block p-3 w-full disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl;
 }
 .fieldError {

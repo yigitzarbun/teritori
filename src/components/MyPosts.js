@@ -15,7 +15,17 @@ function MyPosts() {
   if (myPosts === null) {
     resultJSX = "Loading posts";
   } else if (myPosts.length === 0) {
-    resultJSX = "No posts available";
+    resultJSX = (
+      <div>
+        <p className="font-bold text-xl">No posts available</p>
+        <p className="mb-4">Create your first post</p>
+        <Link to="/yeni-post">
+          <button className="bg-black text-white block p-3 w-1/3 hover:bg-blue-600 disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl">
+            Create Post
+          </button>
+        </Link>
+      </div>
+    );
   } else {
     resultJSX = myPosts.map((post) => (
       <div className="flex justify-between">
