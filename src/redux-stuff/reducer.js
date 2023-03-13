@@ -11,6 +11,8 @@ import {
   EDIT_POST,
   DELETE_POST,
   ADD_VOTE,
+  REMOVE_VOTE,
+  GET_VOTES,
 } from "./actions";
 
 const initialState = {
@@ -94,6 +96,18 @@ export function myReducer(state = initialState, action) {
       return {
         ...state,
         votes: [action.payload, ...(state.votes || [])],
+      };
+    case REMOVE_VOTE:
+      const copyVotes = [...(state.votes || [])];
+      const newVotes = copyVotes.filter((v) => action.payload !== v.vote_id);
+      return {
+        ...state,
+        votes: [...newVotes],
+      };
+    case GET_VOTES:
+      return {
+        ...state,
+        votes: action.payload,
       };
     default:
       return state;

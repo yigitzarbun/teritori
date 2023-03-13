@@ -25,7 +25,7 @@ async function add(vote) {
 }
 
 async function remove(vote_id) {
-  return db("votes").where("vode_id", vote_id).del();
+  return db("votes").where("vote_id", vote_id).del();
 }
 
 module.exports = {

@@ -6,6 +6,8 @@ import {
   getComments,
   deletePost,
   addVote,
+  removeVote,
+  getVotes,
 } from "../redux-stuff/actions";
 import NewComment from "./NewComment";
 import Comment from "./Comment";
@@ -19,6 +21,7 @@ function DetayliTeri() {
   const userPic = user.avatarUrl;
   const comments = useSelector((store) => store.comments);
   const allPosts = useSelector((store) => store.allPosts);
+  const votes = useSelector((store) => store.votes);
   const history = useHistory();
   const [upvote, setUpvote] = useState(false);
   const [downvote, setDownvote] = useState(false);
@@ -27,8 +30,11 @@ function DetayliTeri() {
     if (!allPosts) {
       dispatch(getPosts());
     }
+    if (!votes) {
+      dispatch(getVotes());
+    }
     dispatch(getComments());
-  }, [comments]);
+  }, []);
 
   // ResultJSX >>>
   let resultJSX = "";
@@ -46,6 +52,7 @@ function DetayliTeri() {
   // Comments JSX >>>
 
   let commentsJSX = "";
+
   if (comments === null) {
     commentsJSX = "Loading comments";
   } else if (comments.length === 0) {
@@ -74,6 +81,8 @@ function DetayliTeri() {
           user_id: user.user_id,
         })
       );
+    } else {
+      dispatch(removeVote());
     }
   };
   const handleDownvote = () => {
@@ -88,9 +97,24 @@ function DetayliTeri() {
           user_id: user.user_id,
         })
       );
+    } else {
+      dispatch(removeVote());
     }
   };
 
+  // votesJSX >>>
+
+  let votesJSX = "";
+
+  if (votes === null) {
+    votesJSX = "Loading votes";
+  } else if (votes.length === 0) {
+    votesJSX = "No votes available";
+  } else {
+    votesJSX = votes.filter((vote) => vote.post_id == id);
+  }
+
+  console.log(votesJSX);
   // Edit Post >>>
   const [editArea, setEditArea] = useState(false);
   const handleEditArea = () => {
