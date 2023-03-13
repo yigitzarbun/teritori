@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getPosts,
@@ -18,14 +18,12 @@ function DetayliTeri() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const user = useSelector((store) => store.user);
-  const userPic = user.avatarUrl;
   const comments = useSelector((store) => store.comments);
   const allPosts = useSelector((store) => store.allPosts);
   const votes = useSelector((store) => store.votes);
   const history = useHistory();
   const [upvote, setUpvote] = useState(false);
   const [downvote, setDownvote] = useState(false);
-
   useEffect(() => {
     if (!allPosts) {
       dispatch(getPosts());
@@ -46,8 +44,16 @@ function DetayliTeri() {
   } else {
     resultJSX = allPosts.filter((post) => post.post_id == id)[0];
   }
-  const { district, title, body, post_date, username, user_id, post_id } =
-    resultJSX;
+  const {
+    district,
+    title,
+    body,
+    post_date,
+    username,
+    user_id,
+    post_id,
+    avatarUrl,
+  } = resultJSX;
 
   // Comments JSX >>>
 
@@ -69,10 +75,31 @@ function DetayliTeri() {
   };
 
   // Votes >>>
+  let currentUserVoteId = "";
+  let currentUserVote = "";
+  if (votes === null) {
+    currentUserVoteId = "Loading id";
+  } else if (votes.length === 0) {
+    currentUserVoteId = "This user has no votes for this post";
+  } else {
+    currentUserVoteId = votes.filter(
+      (vote) => vote.user_id == user.user_id && vote.post_id == post_id
+    )[0];
+    if (currentUserVoteId) {
+      currentUserVoteId = currentUserVoteId.vote_id;
+    }
+    currentUserVote = votes.filter(
+      (vote) => vote.user_id == user.user_id && vote.post_id == post_id
+    )[0];
+    if (currentUserVote) {
+      currentUserVote = currentUserVote.vote;
+    }
+  }
+  const [vote, setVote] = useState(currentUserVote ? currentUserVote : null);
   const handleUpvote = () => {
     setUpvote(!upvote);
     setDownvote(false);
-    if (upvote) {
+    if (!upvote) {
       dispatch(
         addVote({
           vote: "up",
@@ -81,14 +108,16 @@ function DetayliTeri() {
           user_id: user.user_id,
         })
       );
+      setVote("up");
     } else {
-      dispatch(removeVote());
+      dispatch(removeVote(currentUserVoteId));
+      setVote(null);
     }
   };
   const handleDownvote = () => {
     setDownvote(!downvote);
     setUpvote(false);
-    if (downvote) {
+    if (!downvote) {
       dispatch(
         addVote({
           vote: "down",
@@ -97,8 +126,10 @@ function DetayliTeri() {
           user_id: user.user_id,
         })
       );
+      setVote("down");
     } else {
-      dispatch(removeVote());
+      dispatch(removeVote(currentUserVoteId));
+      setVote(null);
     }
   };
 
@@ -114,7 +145,6 @@ function DetayliTeri() {
     votesJSX = votes.filter((vote) => vote.post_id == id);
   }
 
-  console.log(votesJSX);
   // Edit Post >>>
   const [editArea, setEditArea] = useState(false);
   const handleEditArea = () => {
@@ -126,7 +156,6 @@ function DetayliTeri() {
     dispatch(deletePost(id));
     history.push("/son-postlar");
   };
-
   return (
     <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
       <div className="flex justify-between">
@@ -215,30 +244,41 @@ function DetayliTeri() {
         <p className="text-sm text-blue-600 mr-auto">{post_date}</p>
       </div>
       <div className="flex mb-8">
-        <button className="mr-4">
-          <img
-            src={upvote ? "/images/up-color.png" : "/images/up-arrow.png"}
-            alt="upvote"
-            className="w-4"
-            onClick={handleUpvote}
-          />
-        </button>
-        <button>
-          <img
-            src={downvote ? "/images/down-color.png" : "/images/down-arrow.png"}
-            alt="downvote"
-            className="w-4"
-            onClick={handleDownvote}
-          />
-        </button>
+        {upvote == true || vote == null ? (
+          <button className="mr-4">
+            <img
+              src={
+                vote === "up" ? "/images/up-color.png" : "/images/up-arrow.png"
+              }
+              alt="upvote"
+              className="w-4"
+              onClick={handleUpvote}
+            />
+          </button>
+        ) : null}
+
+        {downvote == true || vote == null ? (
+          <button>
+            <img
+              src={
+                downvote ? "/images/down-color.png" : "/images/down-arrow.png"
+              }
+              alt="downvote"
+              className="w-4"
+              onClick={handleDownvote}
+            />
+          </button>
+        ) : null}
       </div>
       <div className="flex items-center">
-        <img
-          src={userPic}
-          alt="userAvatar"
-          className="rounded-full w-8 h-8 mr-2"
-        />
-        <p className="font-bold text-sm text-blue-600">{username}</p>
+        <Link to={`/user/${user_id}`}>
+          <img
+            src={avatarUrl ? avatarUrl : "/images/logo.png"}
+            alt="userAvatar"
+            className="rounded-full w-8 h-8 mr-2"
+          />
+          <p className="font-bold text-sm text-blue-600">{username}</p>
+        </Link>
       </div>
 
       <div className="mt-12">

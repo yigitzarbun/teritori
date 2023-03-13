@@ -14,7 +14,11 @@ function Comment(props) {
 
       <div className="flex items-center">
         <img
-          src={comment.avatarUrl}
+          src={
+            comment.avatarUrl
+              ? comment.avatarUrl
+              : "https://fastly.picsum.photos/id/44/200/300.jpg?hmac=XVdwVrJGHwXEzGWC6cZoztYj9nazQEbeWv9VrPmoqps"
+          }
           alt="userAvatar"
           className="rounded-full w-8 h-8 mr-2"
         />

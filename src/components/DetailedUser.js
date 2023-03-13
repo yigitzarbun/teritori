@@ -23,7 +23,6 @@ function DetailedUser() {
 
   const user = users.filter((u) => u.user_id == id)[0];
   const userPosts = allPosts.filter((p) => p.user_id == id);
-
   let resultJSX = "";
   if (userPosts === null) {
     resultJSX = "Loading posts";
@@ -44,7 +43,10 @@ function DetailedUser() {
   }
   return (
     <div className="p-6 border-t w-full bg-[#F8F5F0] flex justify-start gap-x-6 rounded-xl">
-      <img src={user.avatarUrl} className="rounded-full h-48 w-48" />
+      <img
+        src={user.avatarUrl ? user.avatarUrl : "/images/logo.png"}
+        className="rounded-full h-48 w-48"
+      />
       <div className="flex-col w-3/4">
         <p className="font-bold text-2xl">{user.username}</p>
         <p className="text-blue-600 italic text-xs mb-8">{user.district}</p>

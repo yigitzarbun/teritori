@@ -37,7 +37,7 @@ function NewComment(props) {
       className="newCommentForm max-w-md mx-auto bg-white shadow p-8 rounded-xl"
     >
       <img
-        src={userPic}
+        src={userPic ? userPic : "/images/logo.png"}
         alt="userAvatar"
         className="rounded-full w-8 h-8 mr-2"
       />

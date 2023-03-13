@@ -26,7 +26,7 @@ export const GET_VOTES = "GET_VOTES";
 
 export const loginWith = (formData, history) => (dispatch) => {
   axios
-    .post("https://teritori.vercel.app/api/auth/login", formData)
+    .post("http://localhost:9000/api/auth/login", formData)
     .then((response) => {
       if (response.status == 200) {
         dispatch({ type: LOGIN, payload: response.data });
@@ -44,7 +44,7 @@ export const loginWith = (formData, history) => (dispatch) => {
 
 export const getPosts = () => (dispatch) => {
   axios
-    .get("https://teritori.vercel.app/api/posts")
+    .get("http://localhost:9000/api/posts")
     .then((response) => {
       dispatch({ type: GET_POSTS, payload: response.data });
     })
@@ -53,13 +53,13 @@ export const getPosts = () => (dispatch) => {
     });
 };
 export const getComments = () => (dispatch) => {
-  axios.get("https://teritori.vercel.app/api/comments").then((response) => {
+  axios.get("http://localhost:9000/api/comments").then((response) => {
     dispatch({ type: GET_COMMENTS, payload: response.data });
   });
 };
 export const getMyPosts = (user) => (dispatch) => {
   axios
-    .get("https://teritori.vercel.app/api/posts", {
+    .get("http://localhost:9000/api/posts", {
       headers: {
         Authorization: `Bearer ${user.accessToken}`,
       },
@@ -76,7 +76,7 @@ export const getMyPosts = (user) => (dispatch) => {
 };
 export const addPost = (data, history) => (dispatch) => {
   axios
-    .post("https://teritori.vercel.app/api/posts", data)
+    .post("http://localhost:9000/api/posts", data)
     .then((response) => {
       if (response.status === 201) {
         toast.success("Post successful!");
@@ -89,18 +89,16 @@ export const addPost = (data, history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 export const addComment = (data) => (dispatch) => {
-  axios
-    .post("https://teritori.vercel.app/api/comments", data)
-    .then((response) => {
-      if (response.status == 201) {
-        toast.success("Comment successful!");
-        dispatch({ type: ADD_COMMENT, payload: response.data });
-      }
-    });
+  axios.post("http://localhost:9000/api/comments", data).then((response) => {
+    if (response.status == 201) {
+      toast.success("Comment successful!");
+      dispatch({ type: ADD_COMMENT, payload: response.data });
+    }
+  });
 };
 
 export const getUsers = () => (dispatch) => {
-  axios.get("https://teritori.vercel.app/api/users").then((response) => {
+  axios.get("http://localhost:9000/api/users").then((response) => {
     if (response.status == 200) {
       dispatch({ type: USERS, payload: response.data });
     }
@@ -109,7 +107,7 @@ export const getUsers = () => (dispatch) => {
 
 export const editPost = (data) => (dispatch) => {
   axios
-    .put(`https://teritori.vercel.app/api/posts/${data.post_id}`, data)
+    .put(`http://localhost:9000/api/posts/${data.post_id}`, data)
     .then((response) => {
       if (response.status == 201) {
         toast.success("Post edit successful!");
@@ -119,18 +117,16 @@ export const editPost = (data) => (dispatch) => {
 };
 
 export const deletePost = (id) => (dispatch) => {
-  axios
-    .delete(`https://teritori.vercel.app/api/posts/${id}`)
-    .then((response) => {
-      if (response.status == 201) {
-        toast.success("Post deleted!");
-        dispatch({ type: DELETE_POST, payload: response.data });
-      }
-    });
+  axios.delete(`http://localhost:9000/api/posts/${id}`).then((response) => {
+    if (response.status == 201) {
+      toast.success("Post deleted!");
+      dispatch({ type: DELETE_POST, payload: response.data });
+    }
+  });
 };
 
 export const addVote = (data) => (dispatch) => {
-  axios.post("https://teritori.vercel.app/api/votes", data).then((response) => {
+  axios.post("http://localhost:9000/api/votes", data).then((response) => {
     if (response.status == 201) {
       dispatch({ type: ADD_VOTE, payload: response.data });
     }
@@ -138,17 +134,15 @@ export const addVote = (data) => (dispatch) => {
 };
 
 export const removeVote = (id) => (dispatch) => {
-  axios
-    .delete(`https://teritori.vercel.app/api/votes/${id}`)
-    .then((response) => {
-      if (response.status == 201) {
-        dispatch({ type: REMOVE_VOTE, payload: response.data });
-      }
-    });
+  axios.delete(`http://localhost:9000/api/votes/${id}`).then((response) => {
+    if (response.status == 201) {
+      dispatch({ type: REMOVE_VOTE, payload: response.data });
+    }
+  });
 };
 
 export const getVotes = () => (dispatch) => {
-  axios.get("https://teritori.vercel.app/api/votes").then((response) => {
+  axios.get("http://localhost:9000/api/votes").then((response) => {
     if (response.status == 200) {
       dispatch({ type: GET_VOTES, payload: response.data });
     }
