@@ -6,6 +6,7 @@ const postsRouter = require("./posts/posts-router");
 const commentsRouter = require("./comments/comments-router");
 const usersRouter = require("./users/users-router");
 const votesRouter = require("./votes/votes-router");
+const testRouter = require("./testRouter");
 const restrict = require("./middleware/restricted");
 const server = express();
 const session = require("express-session");
@@ -25,7 +26,7 @@ server.use(
     saveUninitialized: false,
   })
 );
-
+server.use("/api/test", testRouter);
 server.use("/api/auth", authRouter);
 server.use("/api/posts", postsRouter);
 server.use("/api/comments", commentsRouter);
