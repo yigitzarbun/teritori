@@ -10,6 +10,8 @@ import DetailedTeri from "./components/DetailedTeri";
 import Header from "./components/Header";
 import Landing from "./components/Landing";
 import Users from "./components/Users";
+import User from "./components/User";
+import DetailedUser from "./components/DetailedUser";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,6 +45,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/users/">
             <Users />
+          </PrivateRoute>
+          <PrivateRoute path="/user/:id">
+            <DetailedUser />
           </PrivateRoute>
           <Route path="/giris">
             <LoginForm />

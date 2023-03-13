@@ -8,6 +8,7 @@ import {
   ADD_COMMENT,
   GET_COMMENTS,
   USERS,
+  EDIT_POST,
 } from "./actions";
 
 const initialState = {
@@ -65,6 +66,18 @@ export function myReducer(state = initialState, action) {
       return {
         ...state,
         users: action.payload,
+      };
+    case EDIT_POST:
+      const copyPosts = [...state.allPosts];
+      const oldPost = copyPosts.filter(
+        (p) => p.post_id == action.payload.post_id
+      )[0];
+      const updatedPost = action.payload;
+      const index = copyPosts.indexOf(oldPost);
+      copyPosts.splice(index, 1, updatedPost);
+      return {
+        ...state,
+        allPosts: [...copyPosts],
       };
     default:
       return state;

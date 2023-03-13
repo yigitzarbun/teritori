@@ -1,39 +1,41 @@
-import { useForm } from "react-hook-form";
-import { addPost } from "../redux-stuff/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { format } from "date-fns";
+import React from "react";
+import { editPost } from "../redux-stuff/actions";
 import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { format } from "date-fns";
 
-function NewPost() {
+function EditPost(props) {
+  const post_id = props.post_id;
   const history = useHistory();
-  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   const districts = useSelector((store) => store.districts);
+  const user = useSelector((store) => store.user);
   const userId = user.user_id;
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isValid },
   } = useForm({ mode: "onChange" });
-
-  const dispatch = useDispatch();
-
-  function handleAddPost(data) {
+  function handleEditPost(data) {
     const dataWide = {
       ...data,
+      post_id: post_id,
       user_id: userId,
       post_date: format(new Date(), "dd/MM/yyyy"),
     };
-    dispatch(addPost(dataWide, history));
+    dispatch(editPost(dataWide, history));
     reset();
   }
 
   return (
     <form
-      className="newPostForm max-w-md mx-auto bg-white shadow p-8 rounded-xl "
-      onSubmit={handleSubmit(handleAddPost)}
+      className="editPostForm max-w-md mx-auto bg-white shadow p-8 rounded-xl "
+      onSubmit={handleSubmit(handleEditPost)}
     >
-      <h1 className="text-2xl text-center mb-4">New Post</h1>
+      <h1 className="text-2xl text-center mb-4">Edit Post</h1>
       <div>
         <label className="block" htmlFor="body">
           What are you thinking?
@@ -86,4 +88,4 @@ function NewPost() {
   );
 }
 
-export default NewPost;
+export default EditPost;

@@ -29,4 +29,14 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+router.put("/:id", async (req, res, next) => {
+  try {
+    await postsModel.update(req.params.id, req.body);
+    const updated = await postsModel.getById(req.params.id);
+    res.status(201).json(updated);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

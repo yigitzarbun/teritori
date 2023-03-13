@@ -11,7 +11,6 @@ function Teri(props) {
         <div className="flex flex-col w-5/6">
           <p className="text-xs text-blue-600 mr-auto italic">{district}</p>
           <Link to={`/post-detay/${post_id}`}>
-            {" "}
             <p className="font-bold text-xl mb-4 mr-4">{title}</p>
           </Link>
 

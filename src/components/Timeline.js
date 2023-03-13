@@ -36,7 +36,7 @@ function TimeLine(props) {
         }
       })
       .sort((a, b) => b.post_id - a.post_id)
-      .map((post) => <Teri key={post.id} post={post} />);
+      .map((post) => <Teri key={post.post_id} post={post} />);
   }
   return (
     <>

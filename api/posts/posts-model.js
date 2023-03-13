@@ -24,9 +24,19 @@ async function add(post) {
   return newPost;
 }
 
+async function update(post_id, changes) {
+  return db("posts").where("post_id", post_id).update(changes);
+}
+
+async function remove(post_id) {
+  return db("posts").where("post_id", post_id).del();
+}
+
 module.exports = {
   getAll,
   getBy,
   getById,
   add,
+  update,
+  remove,
 };

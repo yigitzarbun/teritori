@@ -18,6 +18,7 @@ export const ADD_POST = "ADD_POST";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const GET_COMMENTS = "GET_COMMENTS";
 export const USERS = "USERS";
+export const EDIT_POST = "EDIT_POST";
 
 export const loginWith = (formData, history) => (dispatch) => {
   axios
@@ -98,4 +99,15 @@ export const getUsers = () => (dispatch) => {
       dispatch({ type: USERS, payload: response.data });
     }
   });
+};
+
+export const editPost = (data) => (dispatch) => {
+  axios
+    .put(`http://localhost:9000/api/posts/${data.post_id}`, data)
+    .then((response) => {
+      if (response.status == 201) {
+        toast.success("Post edit successful!");
+        dispatch({ type: EDIT_POST, payload: response.data });
+      }
+    });
 };
