@@ -35,11 +35,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon index.js",
+    "server": "node index.js",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback"
   },
