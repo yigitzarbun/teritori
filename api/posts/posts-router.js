@@ -11,10 +11,10 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", postsMd.postIdExists, async (req, res, next) => {
   try {
     const { id } = req.params;
-    const post = await postsModel.getById({ id });
+    const post = await postsModel.getById(id);
     res.status(200).json(post);
   } catch (error) {
     next(error);

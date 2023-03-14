@@ -11,10 +11,9 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/id", async (req, res, next) => {
+router.get("/:id", commentsMd.commentIdValid, async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const comment = await commentsModel.getById({ id });
+    const comment = await commentsModel.getById(req.params.id);
     res.status(200).json(comment);
   } catch (error) {
     next(error);

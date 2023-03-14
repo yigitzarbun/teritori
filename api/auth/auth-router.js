@@ -10,6 +10,9 @@ router.post(
   "/register",
   authMd.userNameValid,
   authMd.passwordValid,
+  authMd.emailValid,
+  authMd.districtValid,
+  authMd.dateValid,
   authMd.userNameTaken,
   async (req, res, next) => {
     try {

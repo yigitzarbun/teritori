@@ -24,6 +24,31 @@ const passwordValid = (req, res, next) => {
   }
 };
 
+const emailValid = (req, res, next) => {
+  const { email } = req.body;
+  if (!email) {
+    res.status(400).json({ message: "email is a required field" });
+  } else {
+    next();
+  }
+};
+
+const districtValid = (req, res, next) => {
+  const { district } = req.body;
+  if (!district) {
+    res.status(400).json({ message: "district is a required field" });
+  } else {
+    next();
+  }
+};
+const dateValid = (req, res, next) => {
+  const { signup_date } = req.body;
+  if (!signup_date) {
+    res.status(400).json({ message: "signup date is a required field" });
+  } else {
+    next();
+  }
+};
 // Does username exists in DB (SIGN UP) >>>
 const userNameTaken = async (req, res, next) => {
   const { username } = req.body;
@@ -49,6 +74,9 @@ const userNameExists = async (req, res, next) => {
 module.exports = {
   userNameValid,
   passwordValid,
+  emailValid,
+  districtValid,
+  dateValid,
   userNameTaken,
   userNameExists,
 };

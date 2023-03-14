@@ -9,15 +9,18 @@ const contentValid = (req, res, next) => {
   }
 };
 
-const postIdExists = (req, res, next) => {
-  const { id } = req.params;
-  const result = postsModel.getById(id);
-  if (!result) {
-    res
-      .status(400)
-      .json({ message: "there is no post matching your criteria" });
-  } else {
-    next();
+const postIdExists = async (req, res, next) => {
+  try {
+    const result = await postsModel.getById(req.params.id);
+    if (!result) {
+      res
+        .status(400)
+        .json({ message: "there is no post matching your criteria" });
+    } else {
+      next();
+    }
+  } catch (error) {
+    next(error);
   }
 };
 

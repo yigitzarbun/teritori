@@ -14,14 +14,14 @@ async function getBy(filter) {
 }
 
 async function getById(comment_id) {
-  const result = await db("comments").where("comment_id", comment_id);
+  const result = await db("comments").where("comment_id", comment_id).first();
   return result;
 }
 
 async function add(comment) {
   const commentIdArray = await db("comments").insert(comment);
   const commentId = commentIdArray[0];
-  const result = await db("comments").where("comment_id", commentId);
+  const result = await db("comments").where("comment_id", commentId).first();
   return result;
 }
 

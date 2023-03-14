@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const votesModel = require("./votes-model");
+const votesMd = require("./votes-middleware");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -10,7 +11,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", votesMd.voteExists, async (req, res, next) => {
   try {
     const vote = await votesModel.getById(req.params.id);
     res.status(200).json(vote);
@@ -28,7 +29,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", votesMd.voteExists, async (req, res, next) => {
   try {
     const deletedVote = await votesModel.remove(req.params.id);
     res.status(201).json(deletedVote);
