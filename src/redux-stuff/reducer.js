@@ -13,6 +13,7 @@ import {
   ADD_VOTE,
   REMOVE_VOTE,
   GET_VOTES,
+  GET_MY_VOTES,
 } from "./actions";
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
   users: null,
   allPosts: null,
   myPosts: null,
+  myVotes: null,
   comments: null,
   votes: null,
   districts: ["Adalar", "Beşiktaş", "Beyoğlu", "Kadıköy", "Kartal", "Maltepe"],
@@ -54,6 +56,11 @@ export function myReducer(state = initialState, action) {
       return {
         ...state,
         myPosts: action.payload,
+      };
+    case GET_MY_VOTES:
+      return {
+        ...state,
+        myVotes: action.payload,
       };
     case ADD_POST:
       return {

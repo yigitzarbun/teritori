@@ -8,6 +8,7 @@ import {
   addVote,
   removeVote,
   getVotes,
+  getMyVotes,
 } from "../redux-stuff/actions";
 import NewComment from "./NewComment";
 import Comment from "./Comment";
@@ -17,26 +18,31 @@ import { format } from "date-fns";
 function DetayliTeri() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const user = useSelector((store) => store.user);
-  const comments = useSelector((store) => store.comments);
-  const allPosts = useSelector((store) => store.allPosts);
-  const votes = useSelector((store) => store.votes);
+  const { user, comments, allPosts, votes, myVotes } = useSelector(
+    (store) => store
+  );
+
   const history = useHistory();
-  const [upvote, setUpvote] = useState(false);
-  const [downvote, setDownvote] = useState(false);
+  const [vote, setVote] = useState(null);
+  const [commentArea, setCommentArea] = useState(false);
+
+  const handleCommentArea = () => {
+    setCommentArea(!commentArea);
+  };
   useEffect(() => {
     if (!allPosts) {
       dispatch(getPosts());
     }
-    if (!votes) {
-      dispatch(getVotes());
-    }
+
+    dispatch(getVotes());
+
+    dispatch(getMyVotes(user, id));
+
     dispatch(getComments());
-  }, []);
+  }, [vote]);
 
   // ResultJSX >>>
   let resultJSX = "";
-
   if (allPosts === null) {
     resultJSX = "Loading posts";
   } else if (allPosts.length === 0) {
@@ -68,38 +74,32 @@ function DetayliTeri() {
   }
   // Comment area >>>
 
-  const [commentArea, setCommentArea] = useState(false);
-
-  const handleCommentArea = () => {
-    setCommentArea(!commentArea);
-  };
-
   // Votes >>>
-  let currentUserVoteId = "";
-  let currentUserVote = "";
-  if (votes === null) {
+  let currentUserVoteId;
+  let currentUserVote;
+
+  if (myVotes == null) {
     currentUserVoteId = "Loading id";
-  } else if (votes.length === 0) {
+    currentUserVote = "Loading vote";
+  } else if (myVotes.length === 0) {
     currentUserVoteId = "This user has no votes for this post";
+    currentUserVote = "This user has no votes for this post";
+  } else if (myVotes !== null) {
+    currentUserVoteId = myVotes["vote_id"] || null;
+    currentUserVote = myVotes["vote"] || null;
   } else {
-    currentUserVoteId = votes.filter(
-      (vote) => vote.user_id == user.user_id && vote.post_id == post_id
-    )[0];
-    if (currentUserVoteId) {
-      currentUserVoteId = currentUserVoteId.vote_id;
-    }
-    currentUserVote = votes.filter(
-      (vote) => vote.user_id == user.user_id && vote.post_id == post_id
-    )[0];
-    if (currentUserVote) {
-      currentUserVote = currentUserVote.vote;
-    }
+    currentUserVoteId = "";
+    currentUserVote = "";
   }
-  const [vote, setVote] = useState(currentUserVote ? currentUserVote : null);
+
+  console.log("all votes", votes);
+  console.log("myvotes", myVotes);
+  console.log("vote", vote);
+  console.log("currentUserVote", currentUserVote);
+  console.log("currenUserVoteId", currentUserVoteId);
+
   const handleUpvote = () => {
-    setUpvote(!upvote);
-    setDownvote(false);
-    if (!upvote) {
+    if (currentUserVote == "down" || currentUserVote !== "up") {
       dispatch(
         addVote({
           vote: "up",
@@ -109,15 +109,15 @@ function DetayliTeri() {
         })
       );
       setVote("up");
+      dispatch(getMyVotes(user, id));
     } else {
       dispatch(removeVote(currentUserVoteId));
       setVote(null);
+      dispatch(getMyVotes(user, id));
     }
   };
   const handleDownvote = () => {
-    setDownvote(!downvote);
-    setUpvote(false);
-    if (!downvote) {
+    if (currentUserVote == "up" || currentUserVote !== "down") {
       dispatch(
         addVote({
           vote: "down",
@@ -127,9 +127,11 @@ function DetayliTeri() {
         })
       );
       setVote("down");
+      dispatch(getMyVotes(user, id));
     } else {
       dispatch(removeVote(currentUserVoteId));
       setVote(null);
+      dispatch(getMyVotes(user, id));
     }
   };
 
@@ -244,11 +246,13 @@ function DetayliTeri() {
         <p className="text-sm text-blue-600 mr-auto">{post_date}</p>
       </div>
       <div className="flex mb-8">
-        {upvote == true || vote == null ? (
+        {currentUserVote == "up" || currentUserVote !== "down" ? (
           <button className="mr-4">
             <img
               src={
-                vote === "up" ? "/images/up-color.png" : "/images/up-arrow.png"
+                currentUserVote === "up"
+                  ? "/images/up-color.png"
+                  : "/images/up-arrow.png"
               }
               alt="upvote"
               className="w-4"
@@ -257,11 +261,13 @@ function DetayliTeri() {
           </button>
         ) : null}
 
-        {downvote == true || vote == null ? (
+        {currentUserVote == "down" || currentUserVote !== "up" ? (
           <button>
             <img
               src={
-                downvote ? "/images/down-color.png" : "/images/down-arrow.png"
+                currentUserVote == "down"
+                  ? "/images/down-color.png"
+                  : "/images/down-arrow.png"
               }
               alt="downvote"
               className="w-4"

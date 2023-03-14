@@ -4,6 +4,7 @@ async function getAll() {
   const votes = await db("votes")
     .leftJoin("posts", "posts.post_id", "votes.post_id")
     .leftJoin("users", "users.user_id", "votes.user_id");
+
   return votes;
 }
 
@@ -14,6 +15,11 @@ async function getBy(filter) {
 
 async function getById(vote_id) {
   const result = await db("votes").where("vote_id", vote_id).first();
+  return result;
+}
+
+function getCurrentUserVote(user_id) {
+  const result = db("votes").where("user_id", user_id);
   return result;
 }
 
@@ -34,4 +40,5 @@ module.exports = {
   getById,
   add,
   remove,
+  getCurrentUserVote,
 };

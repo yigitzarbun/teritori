@@ -23,6 +23,7 @@ export const DELETE_POST = "DELETE_POST";
 export const ADD_VOTE = "ADD_VOTE";
 export const REMOVE_VOTE = "REMOVE_VOTE";
 export const GET_VOTES = "GET_VOTES";
+export const GET_MY_VOTES = "GET_MY_VOTES";
 
 export const loginWith = (formData, history) => (dispatch) => {
   axios
@@ -74,6 +75,16 @@ export const getMyPosts = (user) => (dispatch) => {
       console.log(error);
     });
 };
+
+export const getMyVotes = (user, id) => (dispatch) => {
+  axios.get("http://localhost:9000/api/votes").then((response) => {
+    const myVotes = response.data.filter(
+      (vote) => vote.user_id === user.user_id && vote.post_id == id
+    )[0];
+    dispatch({ type: GET_MY_VOTES, payload: myVotes });
+  });
+};
+
 export const addPost = (data, history) => (dispatch) => {
   axios
     .post("http://localhost:9000/api/posts", data)
