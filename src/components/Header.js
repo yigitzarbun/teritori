@@ -31,7 +31,7 @@ function Header(props) {
             teritori
           </Link>
         </h1>
-        <nav className="flex justify-between w-1/2">
+        <nav className="flex justify-between w-2/3 items-center">
           <Link className="p-2" to="/son-postlar" onClick={notifyLogin}>
             Discover
           </Link>
@@ -43,13 +43,24 @@ function Header(props) {
             to={`/kullanici/${user ? user.user_id : "-1"}`}
             onClick={notifyLogin}
           >
-            {user && user.username}
+            {user && (
+              <div className="flex">
+                <img
+                  src={user.avatarUrl ? user.avatarUrl : "./images/logo.png"}
+                  alt="logo"
+                  className="rounded-full w-6 h-6 mr-2"
+                />
+                <p>{user.username}</p>
+              </div>
+            )}
           </Link>
           <Link className="p-2" to="/users" onClick={notifyLogin}>
             Users
           </Link>
           {user ? (
-            <button onClick={handleLogout}>Log out</button>
+            <button onClick={handleLogout} className="block">
+              Log out
+            </button>
           ) : (
             <>
               {" "}
