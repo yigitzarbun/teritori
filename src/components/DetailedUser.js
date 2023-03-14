@@ -22,6 +22,7 @@ function DetailedUser() {
   }, []);
 
   const user = users.filter((u) => u.user_id == id)[0];
+
   const userPosts = allPosts.filter((p) => p.user_id == id);
   let resultJSX = "";
   if (userPosts === null) {

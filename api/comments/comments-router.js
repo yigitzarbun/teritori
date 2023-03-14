@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const commentsModel = require("./comments-model");
+const commentsMd = require("./comments-middleware");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -20,7 +21,7 @@ router.get("/id", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", commentsMd.bodyExists, async (req, res, next) => {
   try {
     const post = await commentsModel.add(req.body);
     res.status(201).json(post);

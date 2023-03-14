@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const postsModel = require("./posts-model");
+const postsMd = require("./posts-middleware");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -20,7 +21,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", postsMd.contentValid, async (req, res, next) => {
   try {
     const post = await postsModel.add(req.body);
     res.status(201).json(post);
@@ -29,17 +30,22 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/:id", async (req, res, next) => {
-  try {
-    await postsModel.update(req.params.id, req.body);
-    const updated = await postsModel.getById(req.params.id);
-    res.status(201).json(updated);
-  } catch (error) {
-    next(error);
+router.put(
+  "/:id",
+  postsMd.postIdExists,
+  postsMd.contentValid,
+  async (req, res, next) => {
+    try {
+      await postsModel.update(req.params.id, req.body);
+      const updated = await postsModel.getById(req.params.id);
+      res.status(201).json(updated);
+    } catch (error) {
+      next(error);
+    }
   }
-});
+);
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", postsMd.postIdExists, async (req, res, next) => {
   try {
     const deletedPost = await postsModel.remove(req.params.id);
     res.status(201).json(deletedPost);

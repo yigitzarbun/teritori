@@ -37,7 +37,6 @@ function MyPosts() {
       </div>
     ));
   }
-  console.log(myPosts);
   return (
     <div className="p-6 border-t w-full bg-[#F8F5F0] flex justify-start gap-x-6 rounded-xl">
       <img

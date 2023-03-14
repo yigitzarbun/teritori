@@ -25,21 +25,18 @@ function DetayliTeri() {
   const history = useHistory();
   const [vote, setVote] = useState(null);
   const [commentArea, setCommentArea] = useState(false);
-
   const handleCommentArea = () => {
     setCommentArea(!commentArea);
   };
+
   useEffect(() => {
     if (!allPosts) {
       dispatch(getPosts());
     }
-
     dispatch(getVotes());
-
     dispatch(getMyVotes(user, id));
-
     dispatch(getComments());
-  }, [vote]);
+  }, [vote, commentArea]);
 
   // ResultJSX >>>
   let resultJSX = "";
@@ -92,12 +89,6 @@ function DetayliTeri() {
     currentUserVote = "";
   }
 
-  console.log("all votes", votes);
-  console.log("myvotes", myVotes);
-  console.log("vote", vote);
-  console.log("currentUserVote", currentUserVote);
-  console.log("currenUserVoteId", currentUserVoteId);
-
   const handleUpvote = () => {
     if (currentUserVote == "down" || currentUserVote !== "up") {
       dispatch(
@@ -134,18 +125,6 @@ function DetayliTeri() {
       dispatch(getMyVotes(user, id));
     }
   };
-
-  // votesJSX >>>
-
-  let votesJSX = "";
-
-  if (votes === null) {
-    votesJSX = "Loading votes";
-  } else if (votes.length === 0) {
-    votesJSX = "No votes available";
-  } else {
-    votesJSX = votes.filter((vote) => vote.post_id == id);
-  }
 
   // Edit Post >>>
   const [editArea, setEditArea] = useState(false);

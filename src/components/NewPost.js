@@ -29,59 +29,63 @@ function NewPost() {
   }
 
   return (
-    <form
-      className="newPostForm max-w-md mx-auto bg-white shadow p-8 rounded-xl "
-      onSubmit={handleSubmit(handleAddPost)}
-    >
-      <h1 className="text-2xl text-center mb-4">New Post</h1>
-      <div>
-        <label className="block" htmlFor="body">
-          What are you thinking?
-          {errors.body && (
-            <span className="fieldError">{errors.body.message}</span>
-          )}
-          {errors.title && (
-            <span className="fieldError">{errors.title.message}</span>
-          )}
-        </label>
-        <input
-          {...register("title", {
-            required: "Write a title",
-            maxLength: { value: 45, message: "Max length 45 characters" },
-          })}
-          type="text"
-          placeholder="Title.."
-          name="title"
-          id="title"
-        />
-        <textarea
-          {...register("body", {
-            required: "Write something",
-            maxLength: { value: 150, message: "Max length 150 characters" },
-          })}
-          name="body"
-          id="body"
-          rows="6"
-          placeholder="Your message.."
-          className="mt-4"
-        ></textarea>
-        <select
-          name="district"
-          {...register("district", { required: "Select a district" })}
-        >
-          <option value="">--Choose a district relevant to your post--</option>
-          {districts.map((district) => (
-            <option key={district} value={district}>
-              {district}
+    <div className="newPostForm bg-[#F8F5F0] shadow p-8 rounded-xl ">
+      <form
+        className="newPostForm max-w-md mx-auto bg-white shadow p-8 rounded-xl "
+        onSubmit={handleSubmit(handleAddPost)}
+      >
+        <h1 className="text-2xl text-center mb-4">New Post</h1>
+        <div>
+          <label className="block" htmlFor="body">
+            What are you thinking?
+            {errors.body && (
+              <span className="fieldError">{errors.body.message}</span>
+            )}
+            {errors.title && (
+              <span className="fieldError">{errors.title.message}</span>
+            )}
+          </label>
+          <input
+            {...register("title", {
+              required: "Write a title",
+              maxLength: { value: 45, message: "Max length 45 characters" },
+            })}
+            type="text"
+            placeholder="Title.."
+            name="title"
+            id="title"
+          />
+          <textarea
+            {...register("body", {
+              required: "Write something",
+              maxLength: { value: 150, message: "Max length 150 characters" },
+            })}
+            name="body"
+            id="body"
+            rows="6"
+            placeholder="Your message.."
+            className="mt-4"
+          ></textarea>
+          <select
+            name="district"
+            {...register("district", { required: "Select a district" })}
+          >
+            <option value="">
+              --Choose a district relevant to your post--
             </option>
-          ))}
-        </select>
+            {districts.map((district) => (
+              <option key={district} value={district}>
+                {district}
+              </option>
+            ))}
+          </select>
 
-        <button type="submit" disabled={!isValid} className="mt-4">
-          Post
-        </button>
-      </div>
-    </form>
+          <button type="submit" disabled={!isValid} className="mt-4">
+            Post
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 
