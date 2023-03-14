@@ -1,14 +1,23 @@
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers, getComments, getPosts } from "../redux-stuff/actions";
+import {
+  getUsers,
+  getComments,
+  getPosts,
+  getVotes,
+} from "../redux-stuff/actions";
 
 function DetailedUser() {
   const comments = useSelector((store) => store.comments);
   const allPosts = useSelector((store) => store.allPosts);
   const users = useSelector((store) => store.users);
+  const votes = useSelector((store) => store.votes);
+
   const dispatch = useDispatch();
-  const { id } = useParams();
+  let { id } = useParams();
+  id = Number(id);
+
   useEffect(() => {
     if (!comments) {
       dispatch(getComments());
@@ -19,17 +28,47 @@ function DetailedUser() {
     if (!users) {
       dispatch(getUsers());
     }
+    if (!votes) {
+      dispatch(getVotes());
+    }
   }, []);
 
-  const user = users.filter((u) => u.user_id == id)[0];
+  let user;
+  let userComments;
+  let userPosts;
+  let userVotes;
 
-  const userPosts = allPosts.filter((p) => p.user_id == id);
+  if (allPosts == null) {
+    userPosts = "loading";
+  } else {
+    userPosts = allPosts.filter((p) => p.user_id == id);
+  }
+
+  if (users == null) {
+    user = "loading";
+  } else {
+    user = users.filter((u) => u.user_id == id)[0];
+  }
+
+  if (comments == null) {
+    userComments = "loading";
+  } else {
+    userComments = comments.filter((c) => c.user_id == id);
+  }
+
+  if (votes == null) {
+    userVotes = "loading";
+  } else {
+    userVotes = votes.filter((v) => v.user_id == id);
+  }
+
   let resultJSX = "";
+
   if (userPosts === null) {
     resultJSX = "Loading posts";
-  } else if (userPosts.length === 0) {
+  } else if (Array.isArray(userPosts) && userPosts.length === 0) {
     resultJSX = "No posts available";
-  } else {
+  } else if (Array.isArray(userPosts)) {
     resultJSX = userPosts.map((post) => (
       <div className="flex justify-between" key={post.post_id}>
         <Link
@@ -42,6 +81,7 @@ function DetailedUser() {
       </div>
     ));
   }
+
   return (
     <div className="p-6 border-t w-full bg-[#F8F5F0] flex justify-start gap-x-6 rounded-xl">
       <img
@@ -51,6 +91,11 @@ function DetailedUser() {
       <div className="flex-col w-3/4">
         <p className="font-bold text-2xl">{user.username}</p>
         <p className="text-blue-600 italic text-xs mb-8">{user.district}</p>
+        <div className="mb-8">
+          <p>{`${userPosts.length} post`}</p>
+          <p>{`${userComments.length} comment`}</p>
+          <p>{`${userVotes.length} vote`}</p>
+        </div>
         <div className="flex-col">{resultJSX}</div>
       </div>
     </div>
