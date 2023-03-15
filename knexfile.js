@@ -25,4 +25,9 @@ module.exports = {
       directory: "./data/seeds",
     },
   },
+  production: {
+    ...sharedConfig,
+    connection: { filename: "./data/users.db3" },
+    seeds: { directory: "./data/seeds" },
+  },
 };
