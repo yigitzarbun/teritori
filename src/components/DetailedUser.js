@@ -6,6 +6,7 @@ import {
   getComments,
   getPosts,
   getVotes,
+  getFollows,
 } from "../redux-stuff/actions";
 
 function DetailedUser() {
@@ -13,6 +14,7 @@ function DetailedUser() {
   const allPosts = useSelector((store) => store.allPosts);
   const users = useSelector((store) => store.users);
   const votes = useSelector((store) => store.votes);
+  const follows = useSelector((store) => store.follows);
 
   const dispatch = useDispatch();
   let { id } = useParams();
@@ -31,12 +33,16 @@ function DetailedUser() {
     if (!votes) {
       dispatch(getVotes());
     }
+    if (!follows) {
+      dispatch(getFollows());
+    }
   }, []);
-
+  console.log(follows);
   let user;
   let userComments;
   let userPosts;
   let userVotes;
+  let followers;
 
   if (allPosts == null) {
     userPosts = "loading";
@@ -60,6 +66,14 @@ function DetailedUser() {
     userVotes = "loading";
   } else {
     userVotes = votes.filter((v) => v.user_id == id);
+  }
+
+  if (follows == null) {
+    followers = "loading";
+  } else if (follows.length == 0) {
+    followers = "no followers available";
+  } else {
+    followers = follows.filter((f) => f.followee_id == id);
   }
 
   let resultJSX = "";
@@ -116,6 +130,14 @@ function DetailedUser() {
               className="w-4 h-4 mr-2"
             />
             <p className="text-xs text-blue-600">{`${userVotes.length} vote`}</p>
+          </div>
+          <div className="flex items-center mb-2">
+            <img
+              src={"/images/plus.png"}
+              alt="followers"
+              className="w-4 h-4 mr-2"
+            />
+            <p className="text-xs text-blue-600">{`${followers.length} followers`}</p>
           </div>
         </div>
         <div className="flex-col">{resultJSX}</div>
