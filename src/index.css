@@ -52,3 +52,7 @@ select {
 .fieldError {
   @apply text-red-700 text-xs;
 }
+
+.active-link {
+  font-weight: bold;
+}

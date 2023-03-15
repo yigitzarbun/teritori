@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { LOGOUT } from "../redux-stuff/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -23,6 +23,7 @@ function Header(props) {
     history.push("/son-postlar");
     handleSearch(searchTerm);
   };
+
   return (
     <div>
       <header className="flex items-center justify-between mb-4 py-4">
@@ -35,18 +36,28 @@ function Header(props) {
             teritori
           </Link>
         </h1>
-        <nav className="flex justify-between w-2/3 items-center">
-          <Link className="p-2" to="/son-postlar" onClick={notifyLogin}>
+        <nav className=" nav flex justify-between w-2/3 items-center">
+          <NavLink
+            className=" p-2 text-gray-800 hover:text-black"
+            to="/son-postlar"
+            activeClassName="active-link"
+          >
             Discover
-          </Link>
-          <Link className="p-2" to="/yeni-post" onClick={notifyLogin}>
+          </NavLink>
+          <NavLink
+            className="p-2 text-gray-800 hover:text-black"
+            to="/yeni-post"
+            onClick={notifyLogin}
+            activeClassName="active-link"
+          >
             Post
-          </Link>
+          </NavLink>
           {user && (
-            <Link
-              className="p-2"
+            <NavLink
+              className="p-2 text-gray-800 hover:text-black"
               to={`/kullanici/${user ? user.user_id : "-1"}`}
               onClick={notifyLogin}
+              activeClassName="active-link"
             >
               {user && (
                 <div className="flex">
@@ -58,25 +69,40 @@ function Header(props) {
                   <p>{user.username}</p>
                 </div>
               )}
-            </Link>
+            </NavLink>
           )}
-
-          <Link className="p-2" to="/users" onClick={notifyLogin}>
+          <NavLink
+            className="p-2 text-gray-800 hover:text-black"
+            to="/users"
+            onClick={notifyLogin}
+            activeClassName="active-link"
+          >
             Users
-          </Link>
+          </NavLink>
           {user ? (
-            <button onClick={handleLogout} className="block">
+            <button
+              onClick={handleLogout}
+              className="block text-gray-800 hover:text-black"
+            >
               Log out
             </button>
           ) : (
             <>
               {" "}
-              <Link className="p-2" to="/giris">
+              <NavLink
+                className="p-2 text-gray-800 hover:text-black"
+                activeClassName="active-link"
+                to="/giris"
+              >
                 Log in
-              </Link>
-              <Link className="p-2" to="/kayit-ol">
+              </NavLink>
+              <NavLink
+                className="p-2 text-gray-800 hover:text-black"
+                to="/kayit-ol"
+                activeClassName="active-link"
+              >
                 Sign up
-              </Link>{" "}
+              </NavLink>{" "}
             </>
           )}
         </nav>
