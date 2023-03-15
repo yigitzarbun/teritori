@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { format } from "date-fns";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -7,6 +8,8 @@ import {
   getPosts,
   getVotes,
   getFollows,
+  addFollow,
+  deleteFollow,
 } from "../redux-stuff/actions";
 
 function DetailedUser() {
@@ -15,7 +18,7 @@ function DetailedUser() {
   const users = useSelector((store) => store.users);
   const votes = useSelector((store) => store.votes);
   const follows = useSelector((store) => store.follows);
-
+  const currentUser = useSelector((store) => store.user);
   const dispatch = useDispatch();
   let { id } = useParams();
   id = Number(id);
@@ -37,12 +40,13 @@ function DetailedUser() {
       dispatch(getFollows());
     }
   }, []);
-  console.log(follows);
   let user;
   let userComments;
   let userPosts;
   let userVotes;
   let followers;
+  let followStatus;
+  let follow_id;
 
   if (allPosts == null) {
     userPosts = "loading";
@@ -68,14 +72,23 @@ function DetailedUser() {
     userVotes = votes.filter((v) => v.user_id == id);
   }
 
+  /*
   if (follows == null) {
     followers = "loading";
   } else if (follows.length == 0) {
     followers = "no followers available";
   } else {
     followers = follows.filter((f) => f.followee_id == id);
+    if (Array.isArray(followers) && followers !== undefined) {
+      followStatus = followers.filter(
+        (f) => f.follower_id == currentUser.user_id
+      )[0].follow_status;
+      follow_id = followers.filter(
+        (f) => f.follower_id == currentUser.user_id
+      )[0].follow_id;
+    }
   }
-
+  */
   let resultJSX = "";
 
   if (userPosts === null) {
@@ -96,6 +109,39 @@ function DetailedUser() {
     ));
   }
 
+  /*
+  const handleFollow = () => {
+    const newFollow = {
+      follow_status: "follow",
+      follow_date: format(new Date(), "dd/MM/yyyy"),
+      followee_id: id,
+      follower_id: currentUser.user_id,
+    };
+    if (followStatus !== "follow") {
+      dispatch(addFollow(newFollow));
+    } else if (followStatus == "follow") {
+      dispatch(deleteFollow(follow_id));
+    }
+  };
+
+
+  <img
+            src={
+              followStatus !== "follow"
+                ? "/images/plus.png"
+                : "/images/remove.png"
+            }
+            alt="follow"
+            className="w-4 h-4 ml-2 cursor-pointer"
+            onClick={handleFollow}
+          />
+          <p className="text-xs text-blue-600">{`${followers.length} followers`}</p>
+          <img
+              src={"/images/plus.png"}
+              alt="followers"
+              className="w-4 h-4 mr-2"
+            />
+  */
   return (
     <div className="p-6 border-t w-full bg-[#F8F5F0] flex justify-start gap-x-6 rounded-xl">
       <img
@@ -104,7 +150,9 @@ function DetailedUser() {
         alt="user-avatar"
       />
       <div className="flex-col w-3/4">
-        <p className="font-bold text-2xl">{user.username}</p>
+        <div className="flex items-center">
+          <p className="font-bold text-2xl">{user.username}</p>
+        </div>
         <p className="text-blue-600 italic text-xs mb-8">{user.district}</p>
         <div className="mb-8">
           <div className="flex items-center mb-2">
@@ -131,14 +179,7 @@ function DetailedUser() {
             />
             <p className="text-xs text-blue-600">{`${userVotes.length} vote`}</p>
           </div>
-          <div className="flex items-center mb-2">
-            <img
-              src={"/images/plus.png"}
-              alt="followers"
-              className="w-4 h-4 mr-2"
-            />
-            <p className="text-xs text-blue-600">{`${followers.length} followers`}</p>
-          </div>
+          <div className="flex items-center mb-2"></div>
         </div>
         <div className="flex-col">{resultJSX}</div>
       </div>

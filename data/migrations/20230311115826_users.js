@@ -94,6 +94,7 @@ exports.up = function (knex) {
  */
 exports.down = function (knex) {
   return knex.schema
+    .dropTableIfExists("follows")
     .dropTableIfExists("votes")
     .dropTableIfExists("comments")
     .dropTableIfExists("posts")
