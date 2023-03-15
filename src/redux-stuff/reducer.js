@@ -14,6 +14,9 @@ import {
   REMOVE_VOTE,
   GET_VOTES,
   GET_MY_VOTES,
+  GET_FOLLOWS,
+  ADD_FOLLOW,
+  DELETE_FOLLOW,
 } from "./actions";
 
 const initialState = {
@@ -24,6 +27,7 @@ const initialState = {
   myVotes: null,
   comments: null,
   votes: null,
+  follows: null,
   districts: ["Adalar", "Beşiktaş", "Beyoğlu", "Kadıköy", "Kartal", "Maltepe"],
 };
 
@@ -51,7 +55,11 @@ export function myReducer(state = initialState, action) {
         ...state,
         comments: action.payload,
       };
-
+    case GET_FOLLOWS:
+      return {
+        ...state,
+        follows: action.payload,
+      };
     case GET_MY_POSTS:
       return {
         ...state,
@@ -72,6 +80,11 @@ export function myReducer(state = initialState, action) {
       return {
         ...state,
         comments: [action.payload, ...(state.comments || [])],
+      };
+    case ADD_FOLLOW:
+      return {
+        ...state,
+        follows: [action.payload, ...(state.follows || [])],
       };
     case USERS:
       return {
@@ -98,6 +111,15 @@ export function myReducer(state = initialState, action) {
       return {
         ...state,
         allPosts: [...resultPosts],
+      };
+    case DELETE_FOLLOW:
+      const copyFollows = [...state.follows];
+      const resultFollows = copyFollows.filter(
+        (f) => action.payload !== f.follow_id
+      );
+      return {
+        ...state,
+        allPosts: [...resultFollows],
       };
     case ADD_VOTE:
       return {

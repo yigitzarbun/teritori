@@ -24,6 +24,9 @@ export const ADD_VOTE = "ADD_VOTE";
 export const REMOVE_VOTE = "REMOVE_VOTE";
 export const GET_VOTES = "GET_VOTES";
 export const GET_MY_VOTES = "GET_MY_VOTES";
+export const GET_FOLLOWS = "GET_FOLLOWS";
+export const ADD_FOLLOW = "ADD_FOLLOW";
+export const DELETE_FOLLOW = "DELETE_FOLLOW";
 
 let productionUrl = "https://teritori.vercel.app/";
 let developmentUrl = "http://localhost:9000/";
@@ -52,6 +55,16 @@ export const getPosts = () => (dispatch) => {
     .get(url + "api/posts")
     .then((response) => {
       dispatch({ type: GET_POSTS, payload: response.data });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+export const getFollows = () => (dispatch) => {
+  axios
+    .get(url + "api/follows")
+    .then((response) => {
+      dispatch({ type: GET_FOLLOWS, payload: response.data });
     })
     .catch((error) => {
       console.log(error);
@@ -111,7 +124,14 @@ export const addComment = (data) => (dispatch) => {
     }
   });
 };
-
+export const addFollow = (data) => (dispatch) => {
+  axios.post(url + "api/follows", data).then((response) => {
+    if (response.status == 201) {
+      toast.success("Following!");
+      dispatch({ type: ADD_FOLLOW, payload: response.data });
+    }
+  });
+};
 export const getUsers = () => (dispatch) => {
   axios.get(url + "api/users").then((response) => {
     if (response.status == 200) {
@@ -137,7 +157,14 @@ export const deletePost = (id) => (dispatch) => {
     }
   });
 };
-
+export const deleteFollow = (id) => (dispatch) => {
+  axios.delete(url + `api/follows/${id}`).then((response) => {
+    if (response.status == 201) {
+      toast.success("Unfollowed!");
+      dispatch({ type: DELETE_FOLLOW, payload: response.data });
+    }
+  });
+};
 export const addVote = (data) => (dispatch) => {
   axios.post(url + "api/votes", data).then((response) => {
     if (response.status == 201) {
