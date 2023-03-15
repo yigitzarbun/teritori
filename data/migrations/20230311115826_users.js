@@ -66,6 +66,25 @@ exports.up = function (knex) {
         .inTable("users")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
+    })
+    .createTable("follows", (tbl) => {
+      tbl.increments("follow_id");
+      tbl.string("follow_status").notNullable();
+      tbl.timestamp("follow_date").notNullable();
+      tbl
+        .integer("followee_id")
+        .unsigned()
+        .references("user_id")
+        .inTable("users")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
+      tbl
+        .integer("follower_id")
+        .unsigned()
+        .references("user_id")
+        .inTable("users")
+        .onUpdate("CASCADE")
+        .onDelete("CASCADE");
     });
 };
 

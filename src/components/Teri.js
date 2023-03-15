@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getVotes, getMyVotes } from "../redux-stuff/actions";
+import { getVotes, getMyVotes, getComments } from "../redux-stuff/actions";
 
 function Teri(props) {
   const {
@@ -14,9 +14,10 @@ function Teri(props) {
     post_id,
     user_id,
   } = props.post;
-  const { votes, myVotes, user } = useSelector((state) => state);
+  const { votes, comments, user } = useSelector((state) => state);
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(getComments());
     dispatch(getVotes());
     dispatch(getMyVotes(user, post_id));
   }, []);
@@ -39,6 +40,14 @@ function Teri(props) {
     downvotes = allVotes.filter((v) => v.vote == "down");
   }
 
+  let allComments = "";
+  if (comments == null) {
+    allComments = "Loading comments";
+  } else if (comments.length == 0) {
+    allComments = "Comments not available";
+  } else {
+    allComments = comments.filter((c) => c.post_id == post_id);
+  }
   return (
     <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl mb-1">
       <div className="flex">
@@ -47,7 +56,6 @@ function Teri(props) {
           <Link to={`/post-detay/${post_id}`}>
             <p className="font-bold text-xl mb-4 mr-4">{title}</p>
           </Link>
-
           <p className="box-border break-words w-full mb-8">{body}</p>
         </div>
         <p className="text-sm text-blue-600 mr-auto">{post_date}</p>
@@ -59,13 +67,19 @@ function Teri(props) {
           </button>
           <p className="text-xs text-green-600 text-center">{upvotes.length}</p>
         </Link>
-        <Link to={`/post-detay/${post_id}`}>
+        <Link to={`/post-detay/${post_id}`} className="mr-4">
           <button>
             <img src="/images/down-arrow.png" alt="downvote" className="w-4" />
           </button>
           <p className="text-xs text-rose-700 text-center">
             {downvotes.length}
           </p>
+        </Link>
+        <Link to={`/post-detay/${post_id}`}>
+          <button>
+            <img src="/images/comment.png" alt="comment" className="w-4" />
+          </button>
+          <p className="text-xs text-center">{allComments.length}</p>
         </Link>
       </div>
 

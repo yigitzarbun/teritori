@@ -118,20 +118,22 @@ function Header(props) {
             placeholder="Search in teritori"
             className="shadow-md bg-[#F8F5F0] rounded-full pl-2 py-2 w-full mr-8"
           />
-          <div className="w-1/3 flex justify-between">
-            <button
-              onClick={redirectSearch}
-              className="bg-black hover:bg-blue-600  text-white block px-3 w-3/8 disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl	"
-            >
-              Search
-            </button>
-            <button
-              className="bg-black hover:bg-blue-600  text-white block px-3 w-3/8 disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl	"
-              onClick={clearSearch}
-            >
-              Clear
-            </button>
-          </div>
+          {searchTerm && (
+            <div className="w-1/3 flex justify-between">
+              <button
+                onClick={redirectSearch}
+                className="bg-black hover:bg-blue-600  text-white block px-3 w-3/8 disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl	"
+              >
+                Search
+              </button>
+              <button
+                className="bg-black hover:bg-blue-600  text-white block px-3 w-3/8 disabled:bg-slate-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl	"
+                onClick={clearSearch}
+              >
+                Clear
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

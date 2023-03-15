@@ -139,7 +139,9 @@ function MyPosts() {
               alt="posts"
               className="w-4 h-4 mr-2"
             />
-            <p className="text-xs text-blue-600">{`${resultJSX.length} post`}</p>
+            <p className="text-xs text-blue-600">
+              {resultJSX.length > 0 ? `${resultJSX.length} post` : "0 post"}
+            </p>
           </div>
           <div className="flex items-center mb-2">
             <img
