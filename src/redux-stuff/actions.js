@@ -24,7 +24,11 @@ export const ADD_VOTE = "ADD_VOTE";
 export const REMOVE_VOTE = "REMOVE_VOTE";
 export const GET_VOTES = "GET_VOTES";
 export const GET_MY_VOTES = "GET_MY_VOTES";
-let url = "https://teritori.vercel.app/";
+
+let productionUrl = "https://teritori.vercel.app/";
+let developmentUrl = "http://localhost:9000/";
+let url = developmentUrl;
+
 export const loginWith = (formData, history) => (dispatch) => {
   axios
     .post(url + "api/auth/login", formData)

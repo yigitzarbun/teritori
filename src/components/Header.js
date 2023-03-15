@@ -38,22 +38,25 @@ function Header(props) {
           <Link className="p-2" to="/yeni-post" onClick={notifyLogin}>
             Post
           </Link>
-          <Link
-            className="p-2"
-            to={`/kullanici/${user ? user.user_id : "-1"}`}
-            onClick={notifyLogin}
-          >
-            {user && (
-              <div className="flex">
-                <img
-                  src={user.avatarUrl ? user.avatarUrl : "/images/logo.png"}
-                  alt="logo"
-                  className="rounded-full w-6 h-6 mr-2"
-                />
-                <p>{user.username}</p>
-              </div>
-            )}
-          </Link>
+          {user && (
+            <Link
+              className="p-2"
+              to={`/kullanici/${user ? user.user_id : "-1"}`}
+              onClick={notifyLogin}
+            >
+              {user && (
+                <div className="flex">
+                  <img
+                    src={user.avatarUrl ? user.avatarUrl : "/images/logo.png"}
+                    alt="logo"
+                    className="rounded-full w-6 h-6 mr-2"
+                  />
+                  <p>{user.username}</p>
+                </div>
+              )}
+            </Link>
+          )}
+
           <Link className="p-2" to="/users" onClick={notifyLogin}>
             Users
           </Link>

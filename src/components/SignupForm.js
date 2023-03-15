@@ -44,10 +44,11 @@ function SignupForm() {
         onSubmit={handleSubmit(handleSignupForm)}
         className="signupForm max-w-sm mx-auto bg-white shadow p-8 rounded-xl	"
       >
-        <h1 className="text-2xl text-center mb-4">Sign up</h1>
+        <h1 className="text-2xl text-center mb-2">Sign up</h1>
+        <p className="text-xs mb-4 text-blue-600">* Required fields</p>
         <div>
           <label className="block" htmlFor="email">
-            Email
+            Email*
             {errors.email && (
               <span className="fieldError">{errors.email.message}</span>
             )}
@@ -60,7 +61,7 @@ function SignupForm() {
         </div>
         <div>
           <label className="block" htmlFor="username">
-            Username
+            Username*
             {errors.username && (
               <span className="fieldError">{errors.username.message}</span>
             )}
@@ -73,11 +74,17 @@ function SignupForm() {
           />
         </div>
         <div>
+          <label className="block" htmlFor="district">
+            District*
+            {errors.district && (
+              <span className="fieldError">{errors.district.message}</span>
+            )}
+          </label>
           <select
             name="district"
             {...register("district", { required: "Select a district" })}
           >
-            <option value="">District</option>
+            <option value="">--Select your district--</option>
             {districts.map((district) => (
               <option key={district} value={district}>
                 {district}
@@ -97,7 +104,7 @@ function SignupForm() {
         </div>
         <div>
           <label>
-            Password
+            Password*
             {errors.password && (
               <span className="fieldError">{errors.password.message}</span>
             )}
@@ -117,7 +124,7 @@ function SignupForm() {
         </div>
         <div>
           <label>
-            Repeat password{" "}
+            Repeat password*
             {errors.password2 && (
               <span className="fieldError">{errors.password2.message}</span>
             )}

@@ -18,7 +18,9 @@ import { format } from "date-fns";
 function DetayliTeri() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { user, comments, allPosts, myVotes } = useSelector((store) => store);
+  const { user, comments, allPosts, myVotes, votes } = useSelector(
+    (store) => store
+  );
 
   const history = useHistory();
   const [vote, setVote] = useState(null);
@@ -88,7 +90,7 @@ function DetayliTeri() {
   }
 
   const handleUpvote = () => {
-    if (currentUserVote == "down" || currentUserVote !== "up") {
+    if (currentUserVote !== "up") {
       dispatch(
         addVote({
           vote: "up",
@@ -99,14 +101,16 @@ function DetayliTeri() {
       );
       setVote("up");
       dispatch(getMyVotes(user, id));
-    } else {
+      dispatch(getVotes());
+    } else if (currentUserVote == "up") {
       dispatch(removeVote(currentUserVoteId));
-      setVote(null);
       dispatch(getMyVotes(user, id));
+      dispatch(getVotes());
+      setVote(null);
     }
   };
   const handleDownvote = () => {
-    if (currentUserVote == "up" || currentUserVote !== "down") {
+    if (currentUserVote !== "down") {
       dispatch(
         addVote({
           vote: "down",
@@ -117,13 +121,29 @@ function DetayliTeri() {
       );
       setVote("down");
       dispatch(getMyVotes(user, id));
-    } else {
+      dispatch(getVotes());
+    } else if (currentUserVote == "down") {
       dispatch(removeVote(currentUserVoteId));
-      setVote(null);
       dispatch(getMyVotes(user, id));
+      dispatch(getVotes());
+      setVote(null);
     }
   };
 
+  // Votes >>
+  let allVotes = "";
+  let upVotes = "";
+  let downVotes = "";
+  if (votes == null) {
+    allVotes = "Loading votes";
+  } else if (votes.length == 0) {
+    allVotes = "No votes available";
+  } else {
+    dispatch(getVotes());
+    allVotes = votes.filter((v) => v.post_id == id);
+    upVotes = allVotes.filter((v) => v.vote == "up");
+    downVotes = allVotes.filter((v) => v.vote == "down");
+  }
   // Edit Post >>>
   const [editArea, setEditArea] = useState(false);
   const handleEditArea = () => {
@@ -220,7 +240,12 @@ function DetayliTeri() {
 
           <p className="box-border break-words w-full mb-8">{body}</p>
         </div>
-        <p className="text-sm text-blue-600 mr-auto">{post_date}</p>
+        <div className="flex flex-col">
+          <p className="text-sm text-blue-600 mr-auto mb-4">{post_date}</p>
+          <p className="text-xs ">{`${commentsJSX.length} comment`}</p>
+          <p className="text-xs text-green-600">{`${upVotes.length} upvote`}</p>
+          <p className="text-xs text-rose-700">{`${downVotes.length} downvote`}</p>
+        </div>
       </div>
       <div className="flex mb-8">
         {currentUserVote == "up" || currentUserVote !== "down" ? (
