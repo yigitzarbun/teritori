@@ -24,10 +24,10 @@ export const ADD_VOTE = "ADD_VOTE";
 export const REMOVE_VOTE = "REMOVE_VOTE";
 export const GET_VOTES = "GET_VOTES";
 export const GET_MY_VOTES = "GET_MY_VOTES";
-
+let url = "https://teritori.vercel.app/";
 export const loginWith = (formData, history) => (dispatch) => {
   axios
-    .post("http://localhost:9000/api/auth/login", formData)
+    .post(url + "api/auth/login", formData)
     .then((response) => {
       if (response.status == 200) {
         dispatch({ type: LOGIN, payload: response.data });
@@ -45,7 +45,7 @@ export const loginWith = (formData, history) => (dispatch) => {
 
 export const getPosts = () => (dispatch) => {
   axios
-    .get("http://localhost:9000/api/posts")
+    .get(url + "api/posts")
     .then((response) => {
       dispatch({ type: GET_POSTS, payload: response.data });
     })
@@ -54,13 +54,13 @@ export const getPosts = () => (dispatch) => {
     });
 };
 export const getComments = () => (dispatch) => {
-  axios.get("http://localhost:9000/api/comments").then((response) => {
+  axios.get(url + "api/comments").then((response) => {
     dispatch({ type: GET_COMMENTS, payload: response.data });
   });
 };
 export const getMyPosts = (user) => (dispatch) => {
   axios
-    .get("http://localhost:9000/api/posts", {
+    .get(url + "api/posts", {
       headers: {
         Authorization: `Bearer ${user.accessToken}`,
       },
@@ -77,7 +77,7 @@ export const getMyPosts = (user) => (dispatch) => {
 };
 
 export const getMyVotes = (user, id) => (dispatch) => {
-  axios.get("http://localhost:9000/api/votes").then((response) => {
+  axios.get(url + "api/votes").then((response) => {
     const myVotes = response.data.filter(
       (vote) => vote.user_id === user.user_id && vote.post_id == id
     )[0];
@@ -87,7 +87,7 @@ export const getMyVotes = (user, id) => (dispatch) => {
 
 export const addPost = (data, history) => (dispatch) => {
   axios
-    .post("http://localhost:9000/api/posts", data)
+    .post(url + "api/posts", data)
     .then((response) => {
       if (response.status === 201) {
         toast.success("Post successful!");
@@ -100,7 +100,7 @@ export const addPost = (data, history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 export const addComment = (data) => (dispatch) => {
-  axios.post("http://localhost:9000/api/comments", data).then((response) => {
+  axios.post(url + "api/comments", data).then((response) => {
     if (response.status == 201) {
       toast.success("Comment successful!");
       dispatch({ type: ADD_COMMENT, payload: response.data });
@@ -109,7 +109,7 @@ export const addComment = (data) => (dispatch) => {
 };
 
 export const getUsers = () => (dispatch) => {
-  axios.get("http://localhost:9000/api/users").then((response) => {
+  axios.get(url + "api/users").then((response) => {
     if (response.status == 200) {
       dispatch({ type: USERS, payload: response.data });
     }
@@ -117,18 +117,16 @@ export const getUsers = () => (dispatch) => {
 };
 
 export const editPost = (data) => (dispatch) => {
-  axios
-    .put(`http://localhost:9000/api/posts/${data.post_id}`, data)
-    .then((response) => {
-      if (response.status == 201) {
-        toast.success("Post edit successful!");
-        dispatch({ type: EDIT_POST, payload: response.data });
-      }
-    });
+  axios.put(url + `api/posts/${data.post_id}`, data).then((response) => {
+    if (response.status == 201) {
+      toast.success("Post edit successful!");
+      dispatch({ type: EDIT_POST, payload: response.data });
+    }
+  });
 };
 
 export const deletePost = (id) => (dispatch) => {
-  axios.delete(`http://localhost:9000/api/posts/${id}`).then((response) => {
+  axios.delete(url + `api/posts/${id}`).then((response) => {
     if (response.status == 201) {
       toast.success("Post deleted!");
       dispatch({ type: DELETE_POST, payload: response.data });
@@ -137,7 +135,7 @@ export const deletePost = (id) => (dispatch) => {
 };
 
 export const addVote = (data) => (dispatch) => {
-  axios.post("http://localhost:9000/api/votes", data).then((response) => {
+  axios.post(url + "api/votes", data).then((response) => {
     if (response.status == 201) {
       dispatch({ type: ADD_VOTE, payload: response.data });
     }
@@ -145,7 +143,7 @@ export const addVote = (data) => (dispatch) => {
 };
 
 export const removeVote = (id) => (dispatch) => {
-  axios.delete(`http://localhost:9000/api/votes/${id}`).then((response) => {
+  axios.delete(url + `api/votes/${id}`).then((response) => {
     if (response.status == 201) {
       dispatch({ type: REMOVE_VOTE, payload: response.data });
     }
@@ -153,7 +151,7 @@ export const removeVote = (id) => (dispatch) => {
 };
 
 export const getVotes = () => (dispatch) => {
-  axios.get("http://localhost:9000/api/votes").then((response) => {
+  axios.get(url + "api/votes").then((response) => {
     if (response.status == 200) {
       dispatch({ type: GET_VOTES, payload: response.data });
     }

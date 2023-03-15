@@ -46,7 +46,7 @@ function Header(props) {
             {user && (
               <div className="flex">
                 <img
-                  src={user.avatarUrl ? user.avatarUrl : "./images/logo.png"}
+                  src={user.avatarUrl ? user.avatarUrl : "/images/logo.png"}
                   alt="logo"
                   className="rounded-full w-6 h-6 mr-2"
                 />

@@ -18,9 +18,7 @@ import { format } from "date-fns";
 function DetayliTeri() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { user, comments, allPosts, votes, myVotes } = useSelector(
-    (store) => store
-  );
+  const { user, comments, allPosts, myVotes } = useSelector((store) => store);
 
   const history = useHistory();
   const [vote, setVote] = useState(null);

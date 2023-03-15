@@ -21,7 +21,7 @@ function Users() {
       .sort((a, b) => b.username - a.username)
       .map((user) => <User key={user.user_id} user={user} />);
   }
-  return <div>{resultJSX}</div>;
+  return <div className="mb-8">{resultJSX}</div>;
 }
 
 export default Users;

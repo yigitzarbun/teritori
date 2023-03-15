@@ -79,7 +79,7 @@ export function myReducer(state = initialState, action) {
         users: action.payload,
       };
     case EDIT_POST:
-      const copyPosts = [...state.allPosts];
+      const copyPosts = [...(state.allPosts || [])];
       const oldPost = copyPosts.filter(
         (p) => p.post_id == action.payload.post_id
       )[0];

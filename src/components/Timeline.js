@@ -9,12 +9,6 @@ function TimeLine(props) {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!allPosts) {
-      dispatch(getPosts());
-    }
-  }, [allPosts]);
-
   let resultJSX = "";
   if (allPosts === null) {
     resultJSX = "Loading posts";
@@ -38,6 +32,10 @@ function TimeLine(props) {
       .sort((a, b) => b.post_id - a.post_id)
       .map((post) => <Teri key={post.post_id} post={post} />);
   }
+  useEffect(() => {
+    dispatch(getPosts());
+  }, []);
+
   return (
     <>
       {resultJSX.length > 0 ? (

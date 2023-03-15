@@ -4,7 +4,7 @@ function User(props) {
   const { user } = props;
   const userId = user.user_id;
   return (
-    <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
+    <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl mb-1">
       <div className="flex justify-between">
         <p className="text-xs text-blue-600 italic">{user.district}</p>
         <div className="flex">

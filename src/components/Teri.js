@@ -14,7 +14,7 @@ function Teri(props) {
   } = props.post;
 
   return (
-    <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl">
+    <div className=" flex  flex-col p-6 border-t bg-[#F8F5F0] w-full	h-fit	rounded-xl mb-1">
       <div className="flex">
         <div className="flex flex-col w-5/6">
           <p className="text-xs text-blue-600 mr-auto italic">{district}</p>

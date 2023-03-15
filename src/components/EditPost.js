@@ -1,13 +1,11 @@
 import React from "react";
 import { editPost } from "../redux-stuff/actions";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { format } from "date-fns";
 
 function EditPost(props) {
   const post_id = props.post_id;
-  const history = useHistory();
   const dispatch = useDispatch();
   const districts = useSelector((store) => store.districts);
   const user = useSelector((store) => store.user);
@@ -26,7 +24,7 @@ function EditPost(props) {
       user_id: userId,
       post_date: format(new Date(), "dd/MM/yyyy"),
     };
-    dispatch(editPost(dataWide, history));
+    dispatch(editPost(dataWide));
     props.handleEditArea(!props.editArea);
     reset();
   }
@@ -82,7 +80,7 @@ function EditPost(props) {
         </select>
 
         <button type="submit" disabled={!isValid} className="mt-4">
-          Post
+          Update
         </button>
       </div>
     </form>

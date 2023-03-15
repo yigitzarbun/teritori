@@ -87,14 +87,36 @@ function DetailedUser() {
       <img
         src={user.avatarUrl ? user.avatarUrl : "/images/logo.png"}
         className="rounded-full h-48 w-48"
+        alt="user-avatar"
       />
       <div className="flex-col w-3/4">
         <p className="font-bold text-2xl">{user.username}</p>
         <p className="text-blue-600 italic text-xs mb-8">{user.district}</p>
         <div className="mb-8">
-          <p>{`${userPosts.length} post`}</p>
-          <p>{`${userComments.length} comment`}</p>
-          <p>{`${userVotes.length} vote`}</p>
+          <div className="flex items-center mb-2">
+            <img
+              src={"/images/editing.png"}
+              alt="posts"
+              className="w-4 h-4 mr-2"
+            />
+            <p className="text-xs text-blue-600">{`${userPosts.length} post`}</p>
+          </div>
+          <div className="flex items-center mb-2">
+            <img
+              src={"/images/comment.png"}
+              alt="comments"
+              className="w-4 h-4 mr-2"
+            />
+            <p className="text-xs text-blue-600">{`${userComments.length} comment`}</p>
+          </div>
+          <div className="flex items-center mb-2">
+            <img
+              src={"/images/up-arrow.png"}
+              alt="vote"
+              className="w-4 h-4 mr-2"
+            />
+            <p className="text-xs text-blue-600">{`${userVotes.length} vote`}</p>
+          </div>
         </div>
         <div className="flex-col">{resultJSX}</div>
       </div>
