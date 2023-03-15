@@ -27,7 +27,11 @@ function Header(props) {
     <div>
       <header className="flex items-center justify-between mb-4 py-4">
         <h1 className="font-bold text-3xl">
-          <Link className="p-2 pl-0 block" to={user ? "/son-postlar" : "/"}>
+          <Link
+            className="p-2 pl-0 flex items-center"
+            to={user ? "/son-postlar" : "/"}
+          >
+            <img src="/images/logo.png" alt="logo" className="w-8 h-8 mr-2" />
             teritori
           </Link>
         </h1>
