@@ -3,9 +3,9 @@ import axios from "axios";
 
 export function getUserFromLs() {
   let user = null;
-  const userString = localStorage.getItem("teritoriToken");
+  const userString = JSON.parse(localStorage.getItem("teritoriToken"));
   if (userString) {
-    user = JSON.parse(userString);
+    user = userString.user;
   }
   return user;
 }
@@ -33,8 +33,8 @@ let developmentUrl = "http://localhost:9000/";
 let url = developmentUrl;
 
 const axiosWithAuth = () => {
-  const token = localStorage.getItem("teritoriToken");
-
+  const tokenObj = JSON.parse(localStorage.getItem("teritoriToken"));
+  const token = tokenObj.token;
   return axios.create({
     headers: {
       Authorization: token,
@@ -42,7 +42,7 @@ const axiosWithAuth = () => {
   });
 };
 export const loginWith = (formData, history) => (dispatch) => {
-  axiosWithAuth()
+  axios
     .post(url + "api/auth/login", formData)
     .then((response) => {
       if (response.status == 200) {

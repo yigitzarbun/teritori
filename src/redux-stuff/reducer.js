@@ -34,10 +34,7 @@ const initialState = {
 export function myReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
-      localStorage.setItem(
-        "teritoriToken",
-        JSON.stringify(action.payload.token)
-      );
+      localStorage.setItem("teritoriToken", JSON.stringify(action.payload));
       return {
         ...state,
         user: action.payload,

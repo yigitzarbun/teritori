@@ -62,8 +62,8 @@ function DetailedUser() {
     followers = "no followers available";
   } else if (Array.isArray(follows) && follows !== undefined) {
     followers = follows.filter((f) => f.followee_id == id);
-    currentUserFollowStatus = followers.filter(
-      (f) => f.follower_id == currentUser.user_id
+    currentUserFollowStatus = follows.filter(
+      (f) => f.follower_id == currentUser.user_id && f.followee_id == id
     );
     if (currentUserFollowStatus && currentUserFollowStatus.length > 0) {
       followStatus = currentUserFollowStatus[0]["follow_status"];
@@ -93,7 +93,6 @@ function DetailedUser() {
 
   const [followState, setFollowState] = useState(false);
   const handleFollow = () => {
-    dispatch(getFollows());
     const newFollow = {
       follow_status: "follow",
       follow_date: format(new Date(), "dd/MM/yyyy"),
@@ -103,7 +102,8 @@ function DetailedUser() {
     if (followStatus !== "follow") {
       dispatch(addFollow(newFollow));
       setFollowState(!followState);
-    } else if (followStatus == "follow") {
+    }
+    if (followStatus == "follow") {
       dispatch(deleteFollow(follow_id));
       setFollowState(!followState);
     }

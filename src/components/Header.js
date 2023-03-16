@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 function Header(props) {
   const { handleSearch, searchTerm, clearSearch } = props;
   const history = useHistory();
-  const user = useSelector((store) => store.user);
+  const user = useSelector((store) => store.user).user;
   const dispatch = useDispatch();
   // Handlers >>>
   const notifyLogin = () => {
@@ -23,7 +23,6 @@ function Header(props) {
     history.push("/son-postlar");
     handleSearch(searchTerm);
   };
-
   return (
     <div>
       <header className="flex items-center justify-between mb-4 py-4">
