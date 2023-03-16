@@ -9,7 +9,17 @@ import { useSelector } from "react-redux";
 
 function SignupForm() {
   const districts = useSelector((store) => store.districts);
-
+  /*
+  const axiosWithAuth = () => {
+    const tokenObj = JSON.parse(localStorage.getItem("teritoriToken"));
+    const token = tokenObj.token;
+    return axios.create({
+      headers: {
+        Authorization: token,
+      },
+    });
+  };
+  */
   const {
     register,
     handleSubmit,
@@ -26,7 +36,7 @@ function SignupForm() {
     };
     delete dataWide.password2;
     axios
-      .post("  http://localhost:9000/api/auth/register", dataWide)
+      .post("https://teritoriapp.onrender.com/api/auth/register", dataWide)
       .then((response) => {
         if (response.status === 201) {
           toast.success("Register successful!");
