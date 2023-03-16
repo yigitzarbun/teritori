@@ -129,8 +129,12 @@ function MyPosts() {
       />
       <div className="flex-col w-3/4">
         <p className="font-bold text-2xl">{user.username}</p>
-        <p className="text-blue-600 italic text-xs mb-8">{user.district}</p>
+        <p className="text-blue-600 italic text-xs mb-4">{user.district}</p>
         <div className="mb-8">
+          <p className="text-sm mb-2">
+            <span className="text-blue-600 font-bold">{user.username}</span>
+            's activities:
+          </p>
           <div className="flex items-center mb-2">
             <img
               src={"/images/editing.png"}
