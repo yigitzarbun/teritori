@@ -88,11 +88,7 @@ export const getComments = () => (dispatch) => {
 };
 export const getMyPosts = (user) => (dispatch) => {
   axiosWithAuth()
-    .get(url + "api/posts", {
-      headers: {
-        Authorization: `Bearer ${user.accessToken}`,
-      },
-    })
+    .get(url + "api/posts")
     .then((response) => {
       const myPosts = response.data.filter(
         (post) => post.user_id === user.user_id

@@ -14,7 +14,6 @@ function MyPosts() {
   const history = useHistory();
   const { user, myPosts, votes, comments } = useSelector((store) => store);
   const [editArea, setEditArea] = useState(false);
-
   // edit post >>>
   const handleEditArea = () => {
     dispatch(getMyPosts(user));
@@ -122,7 +121,6 @@ function MyPosts() {
     dispatch(getVotes());
     dispatch(getComments());
   }, []);
-
   return (
     <div className="p-6 border-t w-full bg-[#F8F5F0] flex justify-start gap-x-6 rounded-xl">
       <img

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 function Header(props) {
   const { handleSearch, searchTerm, clearSearch } = props;
   const history = useHistory();
-  const user = useSelector((store) => store.user).user;
+  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   // Handlers >>>
   const notifyLogin = () => {
