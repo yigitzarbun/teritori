@@ -30,7 +30,7 @@ export const DELETE_FOLLOW = "DELETE_FOLLOW";
 
 let productionUrl = "https://teritoriapp.onrender.com/";
 let developmentUrl = "http://localhost:9000/";
-let url = developmentUrl;
+let url = productionUrl;
 
 const axiosWithAuth = () => {
   const tokenObj = JSON.parse(localStorage.getItem("teritoriToken"));
