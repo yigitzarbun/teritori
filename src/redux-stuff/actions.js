@@ -3,7 +3,7 @@ import axios from "axios";
 
 export function getUserFromLs() {
   let user = null;
-  const userString = localStorage.getItem("teritori");
+  const userString = localStorage.getItem("teritoriToken");
   if (userString) {
     user = JSON.parse(userString);
   }
@@ -32,8 +32,17 @@ let productionUrl = "https://teritori.vercel.app/";
 let developmentUrl = "http://localhost:9000/";
 let url = developmentUrl;
 
+const axiosWithAuth = () => {
+  const token = localStorage.getItem("teritoriToken");
+
+  return axios.create({
+    headers: {
+      Authorization: token,
+    },
+  });
+};
 export const loginWith = (formData, history) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .post(url + "api/auth/login", formData)
     .then((response) => {
       if (response.status == 200) {
@@ -51,7 +60,7 @@ export const loginWith = (formData, history) => (dispatch) => {
 };
 
 export const getPosts = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(url + "api/posts")
     .then((response) => {
       dispatch({ type: GET_POSTS, payload: response.data });
@@ -61,7 +70,7 @@ export const getPosts = () => (dispatch) => {
     });
 };
 export const getFollows = () => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(url + "api/follows")
     .then((response) => {
       dispatch({ type: GET_FOLLOWS, payload: response.data });
@@ -71,12 +80,14 @@ export const getFollows = () => (dispatch) => {
     });
 };
 export const getComments = () => (dispatch) => {
-  axios.get(url + "api/comments").then((response) => {
-    dispatch({ type: GET_COMMENTS, payload: response.data });
-  });
+  axiosWithAuth()
+    .get(url + "api/comments")
+    .then((response) => {
+      dispatch({ type: GET_COMMENTS, payload: response.data });
+    });
 };
 export const getMyPosts = (user) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .get(url + "api/posts", {
       headers: {
         Authorization: `Bearer ${user.accessToken}`,
@@ -94,16 +105,18 @@ export const getMyPosts = (user) => (dispatch) => {
 };
 
 export const getMyVotes = (user, id) => (dispatch) => {
-  axios.get(url + "api/votes").then((response) => {
-    const myVotes = response.data.filter(
-      (vote) => vote.user_id === user.user_id && vote.post_id == id
-    )[0];
-    dispatch({ type: GET_MY_VOTES, payload: myVotes });
-  });
+  axiosWithAuth()
+    .get(url + "api/votes")
+    .then((response) => {
+      const myVotes = response.data.filter(
+        (vote) => vote.user_id === user.user_id && vote.post_id == id
+      )[0];
+      dispatch({ type: GET_MY_VOTES, payload: myVotes });
+    });
 };
 
 export const addPost = (data, history) => (dispatch) => {
-  axios
+  axiosWithAuth()
     .post(url + "api/posts", data)
     .then((response) => {
       if (response.status === 201) {
@@ -117,74 +130,92 @@ export const addPost = (data, history) => (dispatch) => {
     .catch((error) => console.log(error));
 };
 export const addComment = (data) => (dispatch) => {
-  axios.post(url + "api/comments", data).then((response) => {
-    if (response.status == 201) {
-      toast.success("Comment successful!");
-      dispatch({ type: ADD_COMMENT, payload: response.data });
-    }
-  });
+  axiosWithAuth()
+    .post(url + "api/comments", data)
+    .then((response) => {
+      if (response.status == 201) {
+        toast.success("Comment successful!");
+        dispatch({ type: ADD_COMMENT, payload: response.data });
+      }
+    });
 };
 export const addFollow = (data) => (dispatch) => {
-  axios.post(url + "api/follows", data).then((response) => {
-    if (response.status == 201) {
-      toast.success("Following!");
-      dispatch({ type: ADD_FOLLOW, payload: response.data });
-    }
-  });
+  axiosWithAuth()
+    .post(url + "api/follows", data)
+    .then((response) => {
+      if (response.status == 201) {
+        toast.success("Following!");
+        dispatch({ type: ADD_FOLLOW, payload: response.data });
+      }
+    });
 };
 export const getUsers = () => (dispatch) => {
-  axios.get(url + "api/users").then((response) => {
-    if (response.status == 200) {
-      dispatch({ type: USERS, payload: response.data });
-    }
-  });
+  axiosWithAuth()
+    .get(url + "api/users")
+    .then((response) => {
+      if (response.status == 200) {
+        dispatch({ type: USERS, payload: response.data });
+      }
+    });
 };
 
 export const editPost = (data) => (dispatch) => {
-  axios.put(url + `api/posts/${data.post_id}`, data).then((response) => {
-    if (response.status == 201) {
-      toast.success("Post edit successful!");
-      dispatch({ type: EDIT_POST, payload: response.data });
-    }
-  });
+  axiosWithAuth()
+    .put(url + `api/posts/${data.post_id}`, data)
+    .then((response) => {
+      if (response.status == 201) {
+        toast.success("Post edit successful!");
+        dispatch({ type: EDIT_POST, payload: response.data });
+      }
+    });
 };
 
 export const deletePost = (id) => (dispatch) => {
-  axios.delete(url + `api/posts/${id}`).then((response) => {
-    if (response.status == 201) {
-      toast.success("Post deleted!");
-      dispatch({ type: DELETE_POST, payload: response.data });
-    }
-  });
+  axiosWithAuth()
+    .delete(url + `api/posts/${id}`)
+    .then((response) => {
+      if (response.status == 201) {
+        toast.success("Post deleted!");
+        dispatch({ type: DELETE_POST, payload: response.data });
+      }
+    });
 };
 export const deleteFollow = (id) => (dispatch) => {
-  axios.delete(url + `api/follows/${id}`).then((response) => {
-    if (response.status == 201) {
-      toast.success("Unfollowed!");
-      dispatch({ type: DELETE_FOLLOW, payload: response.data });
-    }
-  });
+  axiosWithAuth()
+    .delete(url + `api/follows/${id}`)
+    .then((response) => {
+      if (response.status == 201) {
+        toast.success("Unfollowed!");
+        dispatch({ type: DELETE_FOLLOW, payload: response.data });
+      }
+    });
 };
 export const addVote = (data) => (dispatch) => {
-  axios.post(url + "api/votes", data).then((response) => {
-    if (response.status == 201) {
-      dispatch({ type: ADD_VOTE, payload: response.data });
-    }
-  });
+  axiosWithAuth()
+    .post(url + "api/votes", data)
+    .then((response) => {
+      if (response.status == 201) {
+        dispatch({ type: ADD_VOTE, payload: response.data });
+      }
+    });
 };
 
 export const removeVote = (id) => (dispatch) => {
-  axios.delete(url + `api/votes/${id}`).then((response) => {
-    if (response.status == 201) {
-      dispatch({ type: REMOVE_VOTE, payload: response.data });
-    }
-  });
+  axiosWithAuth()
+    .delete(url + `api/votes/${id}`)
+    .then((response) => {
+      if (response.status == 201) {
+        dispatch({ type: REMOVE_VOTE, payload: response.data });
+      }
+    });
 };
 
 export const getVotes = () => (dispatch) => {
-  axios.get(url + "api/votes").then((response) => {
-    if (response.status == 200) {
-      dispatch({ type: GET_VOTES, payload: response.data });
-    }
-  });
+  axiosWithAuth()
+    .get(url + "api/votes")
+    .then((response) => {
+      if (response.status == 200) {
+        dispatch({ type: GET_VOTES, payload: response.data });
+      }
+    });
 };
