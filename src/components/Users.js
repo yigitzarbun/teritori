@@ -5,7 +5,8 @@ import User from "./User";
 
 function Users() {
   const dispatch = useDispatch();
-  const users = useSelector((store) => store.users);
+  const { users, user } = useSelector((store) => store);
+
   useEffect(() => {
     if (!users) {
       dispatch(getUsers());
@@ -19,6 +20,7 @@ function Users() {
   } else {
     resultJSX = users
       .sort((a, b) => b.username - a.username)
+      .filter((u) => u.user_id !== user.user_id)
       .map((user) => <User key={user.user_id} user={user} />);
   }
   return <div className="mb-8">{resultJSX}</div>;

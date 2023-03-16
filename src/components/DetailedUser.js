@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,28 +23,12 @@ function DetailedUser() {
   let { id } = useParams();
   id = Number(id);
 
-  useEffect(() => {
-    if (!comments) {
-      dispatch(getComments());
-    }
-    if (!allPosts) {
-      dispatch(getPosts());
-    }
-    if (!users) {
-      dispatch(getUsers());
-    }
-    if (!votes) {
-      dispatch(getVotes());
-    }
-    if (!follows) {
-      dispatch(getFollows());
-    }
-  }, []);
   let user;
   let userComments;
   let userPosts;
   let userVotes;
   let followers;
+  let currentUserFollowStatus;
   let followStatus;
   let follow_id;
 
@@ -72,23 +56,21 @@ function DetailedUser() {
     userVotes = votes.filter((v) => v.user_id == id);
   }
 
-  /*
   if (follows == null) {
     followers = "loading";
   } else if (follows.length == 0) {
     followers = "no followers available";
-  } else {
+  } else if (Array.isArray(follows) && follows !== undefined) {
     followers = follows.filter((f) => f.followee_id == id);
-    if (Array.isArray(followers) && followers !== undefined) {
-      followStatus = followers.filter(
-        (f) => f.follower_id == currentUser.user_id
-      )[0].follow_status;
-      follow_id = followers.filter(
-        (f) => f.follower_id == currentUser.user_id
-      )[0].follow_id;
+    currentUserFollowStatus = followers.filter(
+      (f) => f.follower_id == currentUser.user_id
+    );
+    if (currentUserFollowStatus && currentUserFollowStatus.length > 0) {
+      followStatus = currentUserFollowStatus[0]["follow_status"];
+      follow_id = currentUserFollowStatus[0]["follow_id"];
     }
   }
-  */
+
   let resultJSX = "";
 
   if (userPosts === null) {
@@ -109,8 +91,9 @@ function DetailedUser() {
     ));
   }
 
-  /*
+  const [followState, setFollowState] = useState(false);
   const handleFollow = () => {
+    dispatch(getFollows());
     const newFollow = {
       follow_status: "follow",
       follow_date: format(new Date(), "dd/MM/yyyy"),
@@ -119,29 +102,21 @@ function DetailedUser() {
     };
     if (followStatus !== "follow") {
       dispatch(addFollow(newFollow));
+      setFollowState(!followState);
     } else if (followStatus == "follow") {
       dispatch(deleteFollow(follow_id));
+      setFollowState(!followState);
     }
   };
 
+  useEffect(() => {
+    dispatch(getComments());
+    dispatch(getPosts());
+    dispatch(getUsers());
+    dispatch(getVotes());
+    dispatch(getFollows());
+  }, [followState]);
 
-  <img
-            src={
-              followStatus !== "follow"
-                ? "/images/plus.png"
-                : "/images/remove.png"
-            }
-            alt="follow"
-            className="w-4 h-4 ml-2 cursor-pointer"
-            onClick={handleFollow}
-          />
-          <p className="text-xs text-blue-600">{`${followers.length} followers`}</p>
-          <img
-              src={"/images/plus.png"}
-              alt="followers"
-              className="w-4 h-4 mr-2"
-            />
-  */
   return (
     <div className="p-6 border-t w-full bg-[#F8F5F0] flex justify-start gap-x-6 rounded-xl">
       <img
@@ -152,6 +127,16 @@ function DetailedUser() {
       <div className="flex-col w-3/4">
         <div className="flex items-center">
           <p className="font-bold text-2xl">{user.username}</p>
+          <img
+            src={
+              followStatus !== "follow"
+                ? "/images/plus.png"
+                : "/images/remove.png"
+            }
+            alt="follow"
+            className="w-4 h-4 ml-2 cursor-pointer"
+            onClick={handleFollow}
+          />
         </div>
         <p className="text-blue-600 italic text-xs mb-8">{user.district}</p>
         <div className="mb-8">
@@ -179,7 +164,14 @@ function DetailedUser() {
             />
             <p className="text-xs text-blue-600">{`${userVotes.length} vote`}</p>
           </div>
-          <div className="flex items-center mb-2"></div>
+          <div className="flex items-center mb-2">
+            <img
+              src={"/images/plus.png"}
+              alt="followers"
+              className="w-4 h-4 mr-2"
+            />
+            <p className="text-xs text-blue-600">{`${followers.length} followers`}</p>
+          </div>
         </div>
         <div className="flex-col">{resultJSX}</div>
       </div>

@@ -10,10 +10,12 @@ const testRouter = require("./testRouter");
 const followsRouter = require("./follows/follows-router");
 const restrict = require("./middleware/restricted");
 const server = express();
-const session = require("express-session");
+//const session = require("express-session");
+server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
+/*
 server.use(
   session({
     name: "cikolatacips",
@@ -27,13 +29,15 @@ server.use(
     saveUninitialized: false,
   })
 );
+*/
+
 server.use("/api/test", testRouter);
 server.use("/api/auth", authRouter);
-server.use("/api/posts", postsRouter);
-server.use("/api/comments", commentsRouter);
-server.use("/api/users", usersRouter);
-server.use("/api/votes", votesRouter);
-server.use("/api/follows", followsRouter);
+server.use("/api/posts", restrict, postsRouter);
+server.use("/api/comments", restrict, commentsRouter);
+server.use("/api/users", restrict, usersRouter);
+server.use("/api/votes", restrict, votesRouter);
+server.use("/api/follows", restrict, followsRouter);
 
 server.get("/", (req, res) => {
   res.status(200).json({ message: "hello world" });

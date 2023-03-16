@@ -1,4 +1,4 @@
-const { JWT_SECRET } = require("../secrets");
+const { JWT_SECRET } = require("../../config/secrets");
 const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
@@ -15,5 +15,4 @@ module.exports = (req, res, next) => {
   } else {
     res.status(401).json({ message: "token required" });
   }
-  next();
 };

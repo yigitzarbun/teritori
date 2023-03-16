@@ -31,9 +31,9 @@ function App() {
       <Landing />
       <main>
         <Switch>
-          <Route path="/son-postlar">
+          <PrivateRoute path="/son-postlar">
             <Timeline searchTerm={searchTerm} clearSearch={clearSearch} />
-          </Route>
+          </PrivateRoute>
           <PrivateRoute path="/yeni-post">
             <NewPost />
           </PrivateRoute>
