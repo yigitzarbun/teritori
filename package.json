@@ -36,10 +36,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev_start": "nodemon index.js",
     "build": "react-scripts build",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --silent",
     "eject": "react-scripts eject",
-    "server": "nodemon index.js",
+    "server": "node index.js",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",
     "rollback": "knex migrate:rollback",
