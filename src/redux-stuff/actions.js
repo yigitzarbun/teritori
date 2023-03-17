@@ -28,7 +28,7 @@ export const GET_FOLLOWS = "GET_FOLLOWS";
 export const ADD_FOLLOW = "ADD_FOLLOW";
 export const DELETE_FOLLOW = "DELETE_FOLLOW";
 
-let productionUrl = "https://teritori.vercel.app/";
+let productionUrl = "https://teritori.herokuapp.com/";
 let developmentUrl = "http://localhost:9000/";
 let url = productionUrl;
 
