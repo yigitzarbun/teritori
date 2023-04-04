@@ -36,7 +36,7 @@ function SignupForm() {
     };
     delete dataWide.password2;
     axios
-      .post("https://teritoriapp.onrender.com/api/auth/register", dataWide)
+      .post("http://localhost:9000/api/auth/register", dataWide)
       .then((response) => {
         if (response.status === 201) {
           toast.success("Register successful!");
@@ -64,7 +64,7 @@ function SignupForm() {
             )}
           </label>
           <input
-            {...register("email", { required: "You must enter a password" })}
+            {...register("email", { required: "You must enter an email" })}
             id="email"
             placeholder="e.g. johndoe@somewhere.com"
           />

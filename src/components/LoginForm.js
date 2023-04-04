@@ -50,10 +50,10 @@ function LoginForm() {
           </label>
           <input
             {...register("password", {
-              required: "Şifre boş bırakılamaz",
+              required: "Password is required",
               minLength: {
                 value: 4,
-                message: "Şifre 4 karakterden kısa olamaz",
+                message: "Min 4 characters",
               },
             })}
             type="password"
